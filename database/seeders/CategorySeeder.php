@@ -32,7 +32,7 @@ class CategorySeeder extends Seeder
             'name' => 'Other',
             'slug' => 'other',
             'description' => 'Other unique and special pets',
-            'icon' => '🦎',
+            'icon' => '🐰',
         ]);
 
         // Subcategories under "Other"
