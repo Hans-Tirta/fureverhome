@@ -12,6 +12,7 @@ class Category extends Model
     use HasFactory;
 
     protected $fillable = [
+        'parent_id',
         'name',
         'slug',
         'description',
@@ -28,5 +29,23 @@ class Category extends Model
     public function articles(): HasMany
     {
         return $this->hasMany(Article::class);
+    }
+
+    // Parent Category (self-referencing)
+    public function parent()
+    {
+        return $this->belongsTo(Category::class, 'parent_id');
+    }
+
+    // Child Categories (subcategories)
+    public function children(): HasMany
+    {
+        return $this->hasMany(Category::class, 'parent_id');
+    }
+
+    // Check if category is a main category (has no parent)
+    public function isMain(): bool
+    {
+        return $this->parent_id === null;
     }
 }
