@@ -37,6 +37,9 @@
         <!-- Footer -->
         <x-footer />
     </div>
+
+    <!-- Toast Notifications -->
+    <x-toast />
 </body>
 
 </html>
