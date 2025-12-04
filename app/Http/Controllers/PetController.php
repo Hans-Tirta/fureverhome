@@ -255,18 +255,23 @@ class PetController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
-     * Soft delete - mark as unavailable instead of hard delete
+     * Toggle pet availability
+     * Soft delete alternative - toggle between available and hidden
      */
     public function destroy(Pet $pet)
     {
         $this->authorize('delete', $pet);
 
-        // Soft delete - just mark as unavailable
-        $pet->update(['is_available' => false]);
+        // Toggle availability
+        $newStatus = !$pet->is_available;
+        $pet->update(['is_available' => $newStatus]);
+
+        $message = $newStatus
+            ? 'Pet "' . $pet->name . '" is now visible for adoption.'
+            : 'Pet "' . $pet->name . '" is now hidden from listings.';
 
         return redirect()->route('pets.manage')
-            ->with('success', 'Pet has been removed from adoption listings.');
+            ->with('success', $message);
     }
 
     /**

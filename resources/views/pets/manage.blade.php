@@ -73,11 +73,13 @@
                                                 <a href="{{ route('pets.show', $pet) }}"
                                                     class="px-3 py-1.5 text-sm font-semibold rounded-md bg-white border border-background-secondary hover:bg-background-primary">View</a>
                                                 <form method="POST" action="{{ route('pets.destroy', $pet) }}"
-                                                    onsubmit="return confirm('Remove this pet from listings?')">
+                                                    onsubmit="return confirm('{{ $pet->is_available ? 'Hide this pet from adoption listings?' : 'Make this pet visible for adoption?' }}')">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit"
-                                                        class="px-3 py-1.5 text-sm font-semibold rounded-md bg-white border border-background-secondary text-accent-red hover:bg-background-primary">Remove</button>
+                                                        class="px-3 py-1.5 text-sm font-semibold rounded-md bg-white border border-background-secondary {{ $pet->is_available ? 'text-accent-red' : 'text-accent-green' }} hover:bg-background-primary">
+                                                        {{ $pet->is_available ? 'Hide' : 'Unhide' }}
+                                                    </button>
                                                 </form>
                                             </div>
                                         </td>
