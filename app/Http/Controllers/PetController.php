@@ -107,10 +107,16 @@ class PetController extends Controller
         $this->authorize('create', Pet::class);
 
         // Get shelter_id based on user role
-        if (Auth::user()->role === 'admin' && $request->filled('shelter_id')) {
+        if (Auth::user()->role === 'admin') {
+            // Admin must provide shelter_id
+            if (!$request->filled('shelter_id')) {
+                return redirect()->back()
+                    ->withInput()
+                    ->with('error', 'You must complete your shelter profile before adding pets.');
+            }
             $shelterId = $request->shelter_id;
         } else {
-            // Ensure shelter exists for shelter users
+            // Shelter user must have shelter profile
             if (!Auth::user()->shelter) {
                 return redirect()->route('dashboard')
                     ->with('error', 'You must complete your shelter profile before adding pets.');
@@ -147,19 +153,19 @@ class PetController extends Controller
 
                 PetImage::create([
                     'pet_id' => $pet->id,
-                    'filename' => $filename,
+                    'image_path' => 'pets/' . $filename,
                     'is_primary' => $index === 0, // First image is primary
                 ]);
 
-                // Set primary image in pets table
+                // Set primary image filename in pets table for dev display
                 if ($index === 0) {
                     $pet->update(['image' => $filename]);
                 }
             }
         }
 
-        return redirect()->route('pets.show', $pet)
-            ->with('success', 'Pet has been successfully registered for adoption!');
+        return redirect()->route('pets.manage')
+            ->with('success', 'Pet "' . $pet->name . '" has been successfully created!');
     }
 
     /**
@@ -217,7 +223,12 @@ class PetController extends Controller
         if ($request->hasFile('images')) {
             // Delete old images
             foreach ($pet->images as $oldImage) {
-                Storage::disk('public')->delete('pets/' . $oldImage->filename);
+                if (!empty($oldImage->image_path)) {
+                    Storage::disk('public')->delete($oldImage->image_path);
+                } else {
+                    // Legacy cleanup if filename was used
+                    Storage::disk('public')->delete('pets/' . ($oldImage->filename ?? ''));
+                }
                 $oldImage->delete();
             }
 
@@ -228,11 +239,11 @@ class PetController extends Controller
 
                 PetImage::create([
                     'pet_id' => $pet->id,
-                    'filename' => $filename,
+                    'image_path' => 'pets/' . $filename,
                     'is_primary' => $index === 0,
                 ]);
 
-                // Update primary image
+                // Update primary image filename for dev display
                 if ($index === 0) {
                     $pet->update(['image' => $filename]);
                 }
