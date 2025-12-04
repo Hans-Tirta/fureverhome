@@ -21,7 +21,7 @@
             <!-- Category Cards -->
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto mb-8">
                 @foreach (\App\Models\Category::whereNull('parent_id')->get() as $category)
-                    <a href=""
+                    <a href="{{ route('pets.index', ['category' => $category->slug]) }}"
                         class="bg-white/90 backdrop-blur-sm p-6 rounded-lg shadow-lg hover:shadow-xl hover:bg-white transition text-center transform hover:scale-105">
                         <div class="text-4xl mb-3">{{ $category->icon }}</div>
                         <div class="font-semibold text-text-primary text-lg">{{ $category->name }}</div>

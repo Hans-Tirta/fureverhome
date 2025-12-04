@@ -16,9 +16,48 @@
                         {{ __('Home') }}
                     </x-nav-link>
 
+                    {{-- Browse Pets Dropdown --}}
+                    <div class="relative inline-flex items-center">
+                        <x-dropdown align="left" width="48">
+                            <x-slot name="trigger">
+                                <button
+                                    class="inline-flex items-center px-1 pt-1 border-b-2 {{ request()->routeIs('pets.index') || request()->routeIs('pets.show') ? 'border-accent-red text-text-primary' : 'border-transparent text-text-secondary hover:text-text-primary hover:border-text-muted' }} text-sm font-medium leading-5 focus:outline-none transition duration-150 ease-in-out h-16">
+                                    <div>Browse Pets</div>
+                                    <div class="ml-1">
+                                        <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg"
+                                            viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd"
+                                                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                                clip-rule="evenodd" />
+                                        </svg>
+                                    </div>
+                                </button>
+                            </x-slot>
+
+                            <x-slot name="content">
+                                <x-dropdown-link :href="route('pets.index')">
+                                    {{ __('All Pets') }}
+                                </x-dropdown-link>
+                                <div class="border-t border-background-secondary"></div>
+                                <x-dropdown-link :href="route('pets.index', ['category' => 'dogs'])">
+                                    {{ __('Find Dogs') }}
+                                </x-dropdown-link>
+                                <x-dropdown-link :href="route('pets.index', ['category' => 'cats'])">
+                                    {{ __('Find Cats') }}
+                                </x-dropdown-link>
+                                <x-dropdown-link :href="route('pets.index', ['category' => 'other'])">
+                                    {{ __('Find Other Animals') }}
+                                </x-dropdown-link>
+                            </x-slot>
+                        </x-dropdown>
+                    </div>
+
                     @auth
                         <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                             {{ __('Dashboard') }}
+                        </x-nav-link>
+                        <x-nav-link :href="route('pets.manage')" :active="request()->routeIs('pets.manage')">
+                            {{ __('Manage Pets') }}
                         </x-nav-link>
                     @endauth
                 </div>
@@ -94,9 +133,28 @@
                 {{ __('Home') }}
             </x-responsive-nav-link>
 
+            <x-responsive-nav-link :href="route('pets.index')" :active="request()->routeIs('pets.*')">
+                {{ __('All Pets') }}
+            </x-responsive-nav-link>
+
+            <x-responsive-nav-link :href="route('pets.index', ['category' => 'dogs'])" class="pl-8">
+                {{ __('Find Dogs') }}
+            </x-responsive-nav-link>
+
+            <x-responsive-nav-link :href="route('pets.index', ['category' => 'cats'])" class="pl-8">
+                {{ __('Find Cats') }}
+            </x-responsive-nav-link>
+
+            <x-responsive-nav-link :href="route('pets.index', ['category' => 'other'])" class="pl-8">
+                {{ __('Find Other Animals') }}
+            </x-responsive-nav-link>
+
             @auth
                 <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                     {{ __('Dashboard') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('pets.manage')" :active="request()->routeIs('pets.manage')">
+                    {{ __('Manage Pets') }}
                 </x-responsive-nav-link>
             @endauth
         </div>
