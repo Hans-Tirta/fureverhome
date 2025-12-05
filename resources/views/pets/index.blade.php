@@ -83,12 +83,12 @@
                             <select name="age" id="age"
                                 class="w-full rounded-md border-background-secondary focus:border-accent-red focus:ring focus:ring-accent-red focus:ring-opacity-50">
                                 <option value="">All Ages</option>
-                                <option value="young" {{ request('age') == 'young' ? 'selected' : '' }}>Young (0-2
-                                    years)</option>
-                                <option value="adult" {{ request('age') == 'adult' ? 'selected' : '' }}>Adult (3-7
-                                    years)</option>
-                                <option value="senior" {{ request('age') == 'senior' ? 'selected' : '' }}>Senior (8+
-                                    years)</option>
+                                <option value="young" {{ request('age') == 'young' ? 'selected' : '' }}>Young (up to
+                                    around 2 years)</option>
+                                <option value="adult" {{ request('age') == 'adult' ? 'selected' : '' }}>Adult (about
+                                    2-7 years)</option>
+                                <option value="senior" {{ request('age') == 'senior' ? 'selected' : '' }}>Senior (about
+                                    7+ years)</option>
                             </select>
                         </div>
 
@@ -128,9 +128,7 @@
                 <p class="text-text-secondary">
                     Showing <span class="font-semibold text-text-primary">{{ $pets->total() }}</span> pets
                     @if (request()->hasAny(['category', 'search', 'size', 'age', 'gender']))
-                        <span class="text-sm">
-                            from {{ \App\Models\Pet::where('is_available', true)->count() }} total available pets
-                        </span>
+                        from {{ \App\Models\Pet::where('is_available', true)->count() }} total available pets
                     @endif
                 </p>
             </div>
@@ -139,8 +137,7 @@
             @if ($pets->count() > 0)
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-8">
                     @foreach ($pets as $pet)
-                        <div
-                            class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition transform hover:-translate-y-1">
+                        <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl">
 
                             {{-- Pet Image --}}
                             <a href="{{ route('pets.show', $pet) }}" class="block">

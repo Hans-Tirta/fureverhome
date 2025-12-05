@@ -53,13 +53,13 @@ class PetController extends Controller
         if ($request->filled('age')) {
             switch ($request->age) {
                 case 'young':
-                    $query->whereRaw('(age_years * 12 + age_months) <= 24'); // <= 2 years
+                    $query->whereRaw('(age_years * 12 + age_months) <= 24'); // 0 – 24 months (0 – 2 years)
                     break;
                 case 'adult':
-                    $query->whereRaw('(age_years * 12 + age_months) BETWEEN 25 AND 84'); // 3-7 years
+                    $query->whereRaw('(age_years * 12 + age_months) BETWEEN 25 AND 84'); // 25 – 84 months (> 2 – 7 years)
                     break;
                 case 'senior':
-                    $query->whereRaw('(age_years * 12 + age_months) > 84'); // > 7 years (8+)
+                    $query->whereRaw('(age_years * 12 + age_months) > 84'); // 85+ months (8+ years)
                     break;
             }
         }
