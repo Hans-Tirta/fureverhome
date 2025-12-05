@@ -56,9 +56,21 @@
                         <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                             {{ __('Dashboard') }}
                         </x-nav-link>
-                        <x-nav-link :href="route('pets.manage')" :active="request()->routeIs('pets.manage')">
-                            {{ __('Manage Pets') }}
-                        </x-nav-link>
+
+                        @if (auth()->user()->role === 'adopter')
+                            <x-nav-link :href="route('adoptions.my-requests')" :active="request()->routeIs('adoptions.my-requests')">
+                                {{ __('My Requests') }}
+                            </x-nav-link>
+                        @endif
+
+                        @if (in_array(auth()->user()->role, ['shelter', 'admin']))
+                            <x-nav-link :href="route('pets.manage')" :active="request()->routeIs('pets.manage')">
+                                {{ __('Manage Pets') }}
+                            </x-nav-link>
+                            <x-nav-link :href="route('adoptions.index')" :active="request()->routeIs('adoptions.index')">
+                                {{ __('Adoptions') }}
+                            </x-nav-link>
+                        @endif
                     @endauth
                 </div>
             </div>
@@ -153,9 +165,21 @@
                 <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                     {{ __('Dashboard') }}
                 </x-responsive-nav-link>
-                <x-responsive-nav-link :href="route('pets.manage')" :active="request()->routeIs('pets.manage')">
-                    {{ __('Manage Pets') }}
-                </x-responsive-nav-link>
+
+                @if (auth()->user()->role === 'adopter')
+                    <x-responsive-nav-link :href="route('adoptions.my-requests')" :active="request()->routeIs('adoptions.my-requests')">
+                        {{ __('My Requests') }}
+                    </x-responsive-nav-link>
+                @endif
+
+                @if (in_array(auth()->user()->role, ['shelter', 'admin']))
+                    <x-responsive-nav-link :href="route('pets.manage')" :active="request()->routeIs('pets.manage')">
+                        {{ __('Manage Pets') }}
+                    </x-responsive-nav-link>
+                    <x-responsive-nav-link :href="route('adoptions.index')" :active="request()->routeIs('adoptions.index')">
+                        {{ __('Adoptions') }}
+                    </x-responsive-nav-link>
+                @endif
             @endauth
         </div>
 

@@ -18,17 +18,26 @@ class Adoption extends Model
         'status',
         'reason',
         'experience',
+        'housing_type',
+        'has_other_pets',
+        'other_pets_details',
+        'has_children',
+        'children_ages',
+        'phone',
+        'address',
+        'references',
+        'rejection_reason',
+        'reviewed_at',
+        'completed_at',
         'living_situation',
         'notes',
         'admin_notes',
-        'applied_at',
-        'responded_at',
-        'completed_at',
     ];
 
     protected $casts = [
-        'applied_at' => 'datetime',
-        'responded_at' => 'datetime',
+        'has_other_pets' => 'boolean',
+        'has_children' => 'boolean',
+        'reviewed_at' => 'datetime',
         'completed_at' => 'datetime',
     ];
 

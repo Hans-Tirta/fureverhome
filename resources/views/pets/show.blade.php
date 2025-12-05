@@ -158,20 +158,31 @@
                     @if ($pet->is_available)
                         <div class="flex flex-col gap-3">
                             @auth
-                                <button
-                                    class="w-full bg-accent-red hover:bg-opacity-90 text-white font-semibold py-3 px-6 rounded-lg transition shadow-sm">
-                                    Request Adoption
-                                </button>
-                                <button
-                                    class="w-full border-2 border-accent-yellow text-accent-yellow hover:bg-accent-yellow hover:text-white font-semibold py-3 px-6 rounded-lg transition">
-                                    Sponsor {{ $pet->name }}
-                                </button>
+                                @if (auth()->user()->role === 'adopter')
+                                    <a href="{{ route('adoptions.create', $pet) }}"
+                                        class="w-full bg-accent-red hover:bg-opacity-90 text-white font-semibold py-3 px-6 rounded-lg transition shadow-sm text-center">
+                                        Request Adoption
+                                    </a>
+                                    <button
+                                        class="w-full border-2 border-accent-yellow text-accent-yellow hover:bg-accent-yellow hover:text-white font-semibold py-3 px-6 rounded-lg transition">
+                                        Sponsor {{ $pet->name }}
+                                    </button>
+                                @else
+                                    <div class="text-center p-4 bg-blue-50 rounded-lg border border-blue-200">
+                                        <p class="text-sm text-blue-800">Adoption requests are available for adopter
+                                            accounts only.</p>
+                                    </div>
+                                @endif
                             @else
                                 <a href="{{ route('login') }}"
                                     class="w-full bg-accent-red hover:bg-opacity-90 text-white font-semibold py-3 px-6 rounded-lg transition shadow-sm text-center">
                                     Login to Adopt
                                 </a>
                             @endauth
+                        </div>
+                    @else
+                        <div class="text-center p-4 bg-gray-100 rounded-lg">
+                            <p class="text-gray-700 font-semibold">This pet is no longer available for adoption.</p>
                         </div>
                     @endif
                 </div>

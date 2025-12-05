@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PetController;
+use App\Http\Controllers\AdoptionController;
 use Illuminate\Support\Facades\Route;
 
 // Public Routes
@@ -24,6 +25,24 @@ Route::middleware(['auth', 'verified'])->group(function () {
     // Pet management routes (for shelter & admin only)
     Route::get('/pets/manage', [PetController::class, 'manage'])->name('pets.manage');
     Route::resource('pets', PetController::class)->except(['index', 'show']);
+
+    // Adoption routes
+    Route::get('/adoptions/my-requests', [AdoptionController::class, 'myRequests'])
+        ->name('adoptions.my-requests');
+    Route::get('/pets/{pet}/adopt', [AdoptionController::class, 'create'])
+        ->name('adoptions.create');
+    Route::post('/adoptions', [AdoptionController::class, 'store'])
+        ->name('adoptions.store');
+    Route::get('/adoptions/{adoption}', [AdoptionController::class, 'show'])
+        ->name('adoptions.show');
+    Route::patch('/adoptions/{adoption}', [AdoptionController::class, 'update'])
+        ->name('adoptions.update');
+    Route::delete('/adoptions/{adoption}', [AdoptionController::class, 'destroy'])
+        ->name('adoptions.destroy');
+
+    // Adoption management (shelter & admin)
+    Route::get('/adoptions', [AdoptionController::class, 'index'])
+        ->name('adoptions.index');
 });
 
 // Profile Routes
