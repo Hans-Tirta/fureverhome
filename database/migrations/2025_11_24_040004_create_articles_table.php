@@ -16,14 +16,11 @@ return new class extends Migration
             $table->foreignId('author_id')->constrained('users')->onDelete('cascade');
             $table->foreignId('category_id')->nullable()->constrained()->onDelete('set null');
             $table->string('title');
-            $table->string('slug')->unique();
-            $table->text('excerpt')->nullable();
             $table->longText('content');
             $table->string('featured_image')->nullable();
-            $table->boolean('is_published')->default(false);
-            $table->timestamp('published_at')->nullable();
             $table->unsignedBigInteger('views')->default(0);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
