@@ -38,6 +38,38 @@ class ProfileController extends Controller
     }
 
     /**
+     * Update the shelter's information.
+     */
+    public function updateShelter(Request $request): RedirectResponse
+    {
+        $validated = $request->validate([
+            'shelter_name' => ['required', 'string', 'max:255'],
+            'address' => ['required', 'string'],
+            'phone' => ['required', 'string', 'max:20'],
+            'shelter_email' => ['required', 'email', 'max:255'],
+            'description' => ['nullable', 'string'],
+            'website' => ['nullable', 'url', 'max:255'],
+        ]);
+
+        $shelter = $request->user()->shelter;
+
+        if (!$shelter) {
+            return Redirect::route('profile.edit')->with('error', 'Shelter profile not found.');
+        }
+
+        $shelter->update([
+            'name' => $validated['shelter_name'],
+            'address' => $validated['address'],
+            'phone' => $validated['phone'],
+            'email' => $validated['shelter_email'],
+            'description' => $validated['description'],
+            'website' => $validated['website'],
+        ]);
+
+        return Redirect::route('profile.edit')->with('status', 'shelter-updated');
+    }
+
+    /**
      * Delete the user's account.
      */
     public function destroy(Request $request): RedirectResponse

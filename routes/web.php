@@ -4,6 +4,8 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PetController;
 use App\Http\Controllers\AdoptionController;
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ShelterController;
 use Illuminate\Support\Facades\Route;
 
 // Public Routes
@@ -20,6 +22,9 @@ Route::get('/pets/{pet}', [PetController::class, 'show'])
 // Public article routes
 Route::get('/articles', [ArticleController::class, 'index'])->name('articles.index');
 Route::get('/articles/{article}', [ArticleController::class, 'show'])->name('articles.show');
+
+// Public shelter profile
+Route::get('/shelters/{shelter}', [ShelterController::class, 'show'])->name('shelters.show');
 
 // Authenticated Routes
 Route::middleware(['auth', 'verified'])->group(function () {
@@ -49,7 +54,14 @@ Route::middleware(['auth', 'verified'])->group(function () {
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::patch('/profile/shelter', [ProfileController::class, 'updateShelter'])->name('profile.shelter.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+// Admin Routes
+Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->group(function () {
+    Route::get('/shelters', [AdminController::class, 'shelters'])->name('shelters');
+    Route::patch('/shelters/{shelter}/approve', [AdminController::class, 'approveShelter'])->name('shelters.approve');
 });
 
 require __DIR__ . '/auth.php';

@@ -71,6 +71,12 @@
                                 {{ __('Adoptions') }}
                             </x-nav-link>
                         @endif
+
+                        @if (auth()->user()->isAdmin())
+                            <x-nav-link :href="route('admin.shelters')" :active="request()->routeIs('admin.shelters')">
+                                {{ __('Shelter Verification') }}
+                            </x-nav-link>
+                        @endif
                     @endauth
                 </div>
             </div>
@@ -182,6 +188,12 @@
                     </x-responsive-nav-link>
                     <x-responsive-nav-link :href="route('adoptions.index')" :active="request()->routeIs('adoptions.index')">
                         {{ __('Adoptions') }}
+                    </x-responsive-nav-link>
+                @endif
+
+                @if (auth()->user()->isAdmin())
+                    <x-responsive-nav-link :href="route('admin.shelters')" :active="request()->routeIs('admin.shelters')">
+                        {{ __('Shelter Verification') }}
                     </x-responsive-nav-link>
                 @endif
             @endauth
