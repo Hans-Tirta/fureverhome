@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PetController;
 use App\Http\Controllers\AdoptionController;
+use App\Http\Controllers\ArticleController;
 use Illuminate\Support\Facades\Route;
 
 // Public Routes
@@ -16,6 +17,10 @@ Route::get('/pets/{pet}', [PetController::class, 'show'])
     ->whereNumber('pet')
     ->name('pets.show');
 
+// Public article routes
+Route::get('/articles', [ArticleController::class, 'index'])->name('articles.index');
+Route::get('/articles/{article}', [ArticleController::class, 'show'])->name('articles.show');
+
 // Authenticated Routes
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', function () {
@@ -24,25 +29,20 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     // Pet management routes (for shelter & admin only)
     Route::get('/pets/manage', [PetController::class, 'manage'])->name('pets.manage');
-    Route::resource('pets', PetController::class)->except(['index', 'show']);
+    Route::get('/pets/create', [PetController::class, 'create'])->name('pets.create');
+    Route::post('/pets', [PetController::class, 'store'])->name('pets.store');
+    Route::get('/pets/{pet}/edit', [PetController::class, 'edit'])->name('pets.edit');
+    Route::patch('/pets/{pet}', [PetController::class, 'update'])->name('pets.update');
+    Route::delete('/pets/{pet}', [PetController::class, 'destroy'])->name('pets.destroy');
 
     // Adoption routes
-    Route::get('/adoptions/my-requests', [AdoptionController::class, 'myRequests'])
-        ->name('adoptions.my-requests');
-    Route::get('/pets/{pet}/adopt', [AdoptionController::class, 'create'])
-        ->name('adoptions.create');
-    Route::post('/adoptions', [AdoptionController::class, 'store'])
-        ->name('adoptions.store');
-    Route::get('/adoptions/{adoption}', [AdoptionController::class, 'show'])
-        ->name('adoptions.show');
-    Route::patch('/adoptions/{adoption}', [AdoptionController::class, 'update'])
-        ->name('adoptions.update');
-    Route::delete('/adoptions/{adoption}', [AdoptionController::class, 'destroy'])
-        ->name('adoptions.destroy');
-
-    // Adoption management (shelter & admin)
-    Route::get('/adoptions', [AdoptionController::class, 'index'])
-        ->name('adoptions.index');
+    Route::get('/adoptions', [AdoptionController::class, 'index'])->name('adoptions.index');
+    Route::get('/adoptions/my-requests', [AdoptionController::class, 'myRequests'])->name('adoptions.my-requests');
+    Route::get('/pets/{pet}/adopt', [AdoptionController::class, 'create'])->name('adoptions.create');
+    Route::post('/adoptions', [AdoptionController::class, 'store'])->name('adoptions.store');
+    Route::get('/adoptions/{adoption}', [AdoptionController::class, 'show'])->name('adoptions.show');
+    Route::patch('/adoptions/{adoption}', [AdoptionController::class, 'update'])->name('adoptions.update');
+    Route::delete('/adoptions/{adoption}', [AdoptionController::class, 'destroy'])->name('adoptions.destroy');
 });
 
 // Profile Routes
