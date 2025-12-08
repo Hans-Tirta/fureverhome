@@ -18,7 +18,7 @@
                         All
                     </a>
                     <a href="{{ route('adoptions.index', ['status' => 'pending']) }}"
-                        class="px-4 py-2 rounded-md font-medium {{ request('status') === 'pending' ? 'bg-accent-blue text-white' : 'bg-white text-text-secondary border border-background-secondary hover:bg-background-primary' }}">
+                        class="px-4 py-2 rounded-md font-medium {{ request('status') === 'pending' ? 'bg-accent-yellow text-white' : 'bg-white text-text-secondary border border-background-secondary hover:bg-background-primary' }}">
                         Pending
                     </a>
                     <a href="{{ route('adoptions.index', ['status' => 'approved']) }}"
@@ -92,7 +92,7 @@
                                     <td class="px-4 py-3">
                                         @if ($adoption->status === 'pending')
                                             <span
-                                                class="inline-block px-2 py-1 text-xs font-semibold bg-accent-blue text-white rounded">Pending</span>
+                                                class="inline-block px-2 py-1 text-xs font-semibold bg-accent-yellow text-white rounded">Pending</span>
                                         @elseif ($adoption->status === 'approved')
                                             <span
                                                 class="inline-block px-2 py-1 text-xs font-semibold bg-accent-green text-white rounded">Approved</span>
