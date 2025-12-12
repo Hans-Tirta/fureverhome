@@ -67,5 +67,38 @@ class CategorySeeder extends Seeder
             'description' => 'Reptiles, amphibians, and fish',
             'icon' => '🐍',
         ]);
+
+        // Article Categories (as subcategories for article management)
+        Category::create([
+            'parent_id' => $dogs->id,
+            'name' => 'Dogs',
+            'slug' => 'dogs-articles',
+            'description' => 'Articles about dog care and training',
+            'icon' => '🐶',
+        ]);
+
+        Category::create([
+            'parent_id' => $cats->id,
+            'name' => 'Cats',
+            'slug' => 'cats-articles',
+            'description' => 'Articles about cat care and behavior',
+            'icon' => '🐱',
+        ]);
+
+        Category::create([
+            'parent_id' => $other->id,
+            'name' => 'Other animal',
+            'slug' => 'other-animal-articles',
+            'description' => 'Articles about other pets and animals',
+            'icon' => '🐰',
+        ]);
+
+        Category::create([
+            'parent_id' => $dogs->id,
+            'name' => 'General',
+            'slug' => 'general-articles',
+            'description' => 'General pet care articles',
+            'icon' => '📰',
+        ]);
     }
 }

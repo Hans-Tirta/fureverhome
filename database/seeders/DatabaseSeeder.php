@@ -18,7 +18,7 @@ class DatabaseSeeder extends Seeder
             CategorySeeder::class,
             ShelterSeeder::class,
             PetSeeder::class,
-            // ArticleSeeder nanti
+            ArticleSeeder::class,
         ]);
     }
 }

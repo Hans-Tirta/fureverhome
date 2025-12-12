@@ -73,6 +73,9 @@
                         @endif
 
                         @if (auth()->user()->isAdmin())
+                            <x-nav-link :href="route('articles.manage')" :active="request()->routeIs('articles.manage') || request()->routeIs('articles.create') || request()->routeIs('articles.edit')">
+                                {{ __('Manage Articles') }}
+                            </x-nav-link>
                             <x-nav-link :href="route('admin.shelters')" :active="request()->routeIs('admin.shelters')">
                                 {{ __('Shelter Verification') }}
                             </x-nav-link>
@@ -192,6 +195,9 @@
                 @endif
 
                 @if (auth()->user()->isAdmin())
+                    <x-responsive-nav-link :href="route('articles.manage')" :active="request()->routeIs('articles.manage') || request()->routeIs('articles.create') || request()->routeIs('articles.edit')">
+                        {{ __('Manage Articles') }}
+                    </x-responsive-nav-link>
                     <x-responsive-nav-link :href="route('admin.shelters')" :active="request()->routeIs('admin.shelters')">
                         {{ __('Shelter Verification') }}
                     </x-responsive-nav-link>
