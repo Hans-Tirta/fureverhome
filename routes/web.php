@@ -31,23 +31,31 @@ Route::middleware(['auth', 'verified'])->group(function () {
         return view('dashboard');
     })->name('dashboard');
 
-    // Pet management routes (for shelter & admin only)
-    Route::get('/pets/manage', [PetController::class, 'manage'])->name('pets.manage');
-    Route::get('/pets/create', [PetController::class, 'create'])->name('pets.create');
-    Route::post('/pets', [PetController::class, 'store'])->name('pets.store');
-    Route::get('/pets/{pet}/edit', [PetController::class, 'edit'])->name('pets.edit');
-    Route::patch('/pets/{pet}', [PetController::class, 'update'])->name('pets.update');
-    Route::delete('/pets/{pet}', [PetController::class, 'destroy'])->name('pets.destroy');
+    // Adopter-only routes
+    Route::middleware('role:adopter')->group(function () {
+        Route::get('/adoptions/my-requests', [AdoptionController::class, 'myRequests'])->name('adoptions.my-requests');
+        Route::get('/pets/{pet}/adopt', [AdoptionController::class, 'create'])->name('adoptions.create');
+        Route::post('/adoptions', [AdoptionController::class, 'store'])->name('adoptions.store');
+        Route::delete('/adoptions/{adoption}', [AdoptionController::class, 'destroy'])->name('adoptions.destroy');
+    });
 
+    // Shelter-only routes (Pet & Adoption Management)
+    Route::middleware('role:shelter')->group(function () {
+        // Pet management routes
+        Route::get('/pets/manage', [PetController::class, 'manage'])->name('pets.manage');
+        Route::get('/pets/create', [PetController::class, 'create'])->name('pets.create');
+        Route::post('/pets', [PetController::class, 'store'])->name('pets.store');
+        Route::get('/pets/{pet}/edit', [PetController::class, 'edit'])->name('pets.edit');
+        Route::patch('/pets/{pet}', [PetController::class, 'update'])->name('pets.update');
+        Route::delete('/pets/{pet}', [PetController::class, 'destroy'])->name('pets.destroy');
 
-    // Adoption routes
-    Route::get('/adoptions', [AdoptionController::class, 'index'])->name('adoptions.index');
-    Route::get('/adoptions/my-requests', [AdoptionController::class, 'myRequests'])->name('adoptions.my-requests');
-    Route::get('/pets/{pet}/adopt', [AdoptionController::class, 'create'])->name('adoptions.create');
-    Route::post('/adoptions', [AdoptionController::class, 'store'])->name('adoptions.store');
+        // Adoption management routes
+        Route::get('/adoptions', [AdoptionController::class, 'index'])->name('adoptions.index');
+        Route::patch('/adoptions/{adoption}', [AdoptionController::class, 'update'])->name('adoptions.update');
+    });
+
+    // Shared route (both adopter and shelter can view adoption details)
     Route::get('/adoptions/{adoption}', [AdoptionController::class, 'show'])->name('adoptions.show');
-    Route::patch('/adoptions/{adoption}', [AdoptionController::class, 'update'])->name('adoptions.update');
-    Route::delete('/adoptions/{adoption}', [AdoptionController::class, 'destroy'])->name('adoptions.destroy');
 });
 
 // Profile Routes

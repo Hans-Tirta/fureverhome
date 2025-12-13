@@ -10,25 +10,20 @@ class AdoptionPolicy
 {
     /**
      * Determine whether the user can view any models.
-     * Shelter/admin can view their adoption requests list
+     * Only shelter can view their adoption requests list
      */
     public function viewAny(User $user): bool
     {
-        // Shelter and admin can view adoption requests
-        return $user->isShelter() || $user->isAdmin();
+        // Only shelter can view adoption requests
+        return $user->isShelter();
     }
 
     /**
      * Determine whether the user can view the model.
-     * Adopter can view their own, shelter can view for their pets, admin can view all
+     * Adopter can view their own, shelter can view for their pets
      */
     public function view(User $user, Adoption $adoption): bool
     {
-        // Admin can view any adoption
-        if ($user->isAdmin()) {
-            return true;
-        }
-
         // Adopter can view their own adoption requests
         if ($user->isAdopter() && $adoption->user_id === $user->id) {
             return true;
@@ -53,16 +48,11 @@ class AdoptionPolicy
 
     /**
      * Determine whether the user can update the model.
-     * Only shelter owner or admin can update (approve/reject)
+     * Only shelter owner can update (approve/reject)
      */
     public function update(User $user, Adoption $adoption): bool
     {
-        // Admin can update any adoption
-        if ($user->isAdmin()) {
-            return true;
-        }
-
-        // Shelter can update adoptions for their pets
+        // Only shelter can update adoptions for their pets
         if ($user->isShelter() && $user->shelter) {
             return $adoption->pet->shelter_id === $user->shelter->id;
         }

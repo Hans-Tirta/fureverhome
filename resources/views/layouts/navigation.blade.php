@@ -63,7 +63,7 @@
                             </x-nav-link>
                         @endif
 
-                        @if (in_array(auth()->user()->role, ['shelter', 'admin']))
+                        @if (auth()->user()->isShelter())
                             <x-nav-link :href="route('pets.manage')" :active="request()->routeIs('pets.manage')">
                                 {{ __('Manage Pets') }}
                             </x-nav-link>
@@ -181,13 +181,13 @@
             </x-responsive-nav-link>
 
             @auth
-                @if (auth()->user()->role === 'adopter')
+                @if (auth()->user()->isAdopter())
                     <x-responsive-nav-link :href="route('adoptions.my-requests')" :active="request()->routeIs('adoptions.my-requests')">
                         {{ __('My Requests') }}
                     </x-responsive-nav-link>
                 @endif
 
-                @if (in_array(auth()->user()->role, ['shelter', 'admin']))
+                @if (auth()->user()->isShelter())
                     <x-responsive-nav-link :href="route('pets.manage')" :active="request()->routeIs('pets.manage')">
                         {{ __('Manage Pets') }}
                     </x-responsive-nav-link>

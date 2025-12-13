@@ -30,25 +30,20 @@ class PetPolicy
 
     /**
      * Determine whether the user can create models.
-     * Hanya shelter dan admin yang bisa create pets
+     * Hanya shelter yang bisa create pets
      */
     public function create(User $user): bool
     {
-        return $user->isShelter() || $user->isAdmin();
+        return $user->isShelter();
     }
 
     /**
      * Determine whether the user can update the model.
-     * Shelter hanya bisa update pets milik mereka, admin bisa update semua
+     * Shelter hanya bisa update pets milik mereka
      */
     public function update(User $user, Pet $pet): bool
     {
-        // Admin can update any pet
-        if ($user->isAdmin()) {
-            return true;
-        }
-
-        // Shelter can only update their own pets
+        // Only shelter can update their own pets
         if ($user->isShelter()) {
             // Check if shelter relationship exists
             if (!$user->shelter) {

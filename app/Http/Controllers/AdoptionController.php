@@ -14,8 +14,8 @@ class AdoptionController extends Controller
 {
     use AuthorizesRequests;
     /**
-     * Display adoption requests for shelter/admin
-     * Shelter sees their pets' requests, admin sees all
+     * Display adoption requests for shelter
+     * Shelter sees their pets' requests only
      */
     public function index(Request $request)
     {
@@ -23,16 +23,11 @@ class AdoptionController extends Controller
 
         $user = Auth::user();
 
-        // Build query based on user type
-        $query = Adoption::with(['pet.category', 'pet.shelter', 'user']);
-
-        if ($user->shelter) {
-            // Shelter sees requests for their pets
-            $query->whereHas('pet', function ($q) use ($user) {
+        // Build query for shelter's adoption requests
+        $query = Adoption::with(['pet.category', 'pet.shelter', 'user'])
+            ->whereHas('pet', function ($q) use ($user) {
                 $q->where('shelter_id', $user->shelter->id);
             });
-        }
-        // Admin sees all requests (no filter needed)
 
         // Filter by status
         if ($request->filled('status')) {

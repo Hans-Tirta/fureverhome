@@ -44,7 +44,7 @@ class PetController extends Controller
             }
         }
 
-        // Filter by size if provided  
+        // Filter by size if provided
         if ($request->filled('size')) {
             $query->where('size', $request->size);
         }
@@ -106,23 +106,13 @@ class PetController extends Controller
     {
         $this->authorize('create', Pet::class);
 
-        // Get shelter_id based on user role
-        if (Auth::user()->role === 'admin') {
-            // Admin must provide shelter_id
-            if (!$request->filled('shelter_id')) {
-                return redirect()->back()
-                    ->withInput()
-                    ->with('error', 'You must complete your shelter profile before adding pets.');
-            }
-            $shelterId = $request->shelter_id;
-        } else {
-            // Shelter user must have shelter profile
-            if (!Auth::user()->shelter) {
-                return redirect()->route('dashboard')
-                    ->with('error', 'You must complete your shelter profile before adding pets.');
-            }
-            $shelterId = Auth::user()->shelter->id;
+        // Shelter user must have shelter profile
+        if (!Auth::user()->shelter) {
+            return redirect()->route('dashboard')
+                ->with('error', 'You must complete your shelter profile before adding pets.');
         }
+
+        $shelterId = Auth::user()->shelter->id;
 
         // Create pet record
         $pet = Pet::create([
