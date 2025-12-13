@@ -6,6 +6,7 @@ use App\Http\Controllers\AdoptionController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ShelterController;
+use App\Http\Controllers\SponsorshipController;
 use Illuminate\Support\Facades\Route;
 
 // Public Routes
@@ -84,5 +85,16 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 
 // Article show route - Must be after specific routes to avoid conflicts
 Route::get('/articles/{article}', [ArticleController::class, 'show'])->name('articles.show');
+
+// Sponsorship Routes
+Route::middleware('auth')->group(function () {
+    Route::get('/shelters/{shelter}/sponsor', [SponsorshipController::class, 'create'])->name('sponsorships.create');
+    Route::post('/sponsorships', [SponsorshipController::class, 'store'])->name('sponsorships.store');
+    Route::get('/sponsorships/{sponsorship}/success', [SponsorshipController::class, 'success'])->name('sponsorships.success');
+    Route::get('/sponsorships/{sponsorship}/failed', [SponsorshipController::class, 'failed'])->name('sponsorships.failed');
+});
+
+// Midtrans Payment Notification (No auth middleware - called by Midtrans server)
+Route::post('/sponsorships/notification', [SponsorshipController::class, 'notification'])->name('sponsorships.notification');
 
 require __DIR__ . '/auth.php';

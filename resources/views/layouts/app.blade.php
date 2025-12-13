@@ -40,6 +40,9 @@
 
     <!-- Toast Notifications -->
     <x-toast />
+
+    <!-- Custom Scripts -->
+    @stack('scripts')
 </body>
 
 </html>
