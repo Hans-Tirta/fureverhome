@@ -199,6 +199,71 @@
                 button.classList.remove('border-background-secondary');
                 button.classList.add('border-accent-red', 'bg-accent-red', 'bg-opacity-10');
             }
+
+            // Handle form submission with AJAX
+            document.getElementById('sponsorshipForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+
+                const submitButton = this.querySelector('button[type="submit"]');
+                const originalText = submitButton.textContent;
+
+                // Disable submit button and show loading
+                submitButton.disabled = true;
+                submitButton.textContent = 'Processing...';
+
+                // Get form data
+                const formData = new FormData(this);
+
+                // Send AJAX request
+                fetch('{{ route('sponsorships.store') }}', {
+                        method: 'POST',
+                        body: formData,
+                        headers: {
+                            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
+                            'Accept': 'application/json',
+                        }
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.snap_token) {
+                            // Open Midtrans Snap payment popup
+                            snap.pay(data.snap_token, {
+                                onSuccess: function(result) {
+                                    // Redirect to success page
+                                    window.location.href =
+                                        `/sponsorships/${data.sponsorship_id}/success`;
+                                },
+                                onPending: function(result) {
+                                    // Payment pending
+                                    alert('Payment is pending. Please complete your payment.');
+                                    submitButton.disabled = false;
+                                    submitButton.textContent = originalText;
+                                },
+                                onError: function(result) {
+                                    // Payment error
+                                    alert('Payment failed. Please try again.');
+                                    submitButton.disabled = false;
+                                    submitButton.textContent = originalText;
+                                },
+                                onClose: function() {
+                                    // User closed popup
+                                    submitButton.disabled = false;
+                                    submitButton.textContent = originalText;
+                                }
+                            });
+                        } else if (data.error) {
+                            alert(data.error);
+                            submitButton.disabled = false;
+                            submitButton.textContent = originalText;
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        alert('An error occurred. Please try again.');
+                        submitButton.disabled = false;
+                        submitButton.textContent = originalText;
+                    });
+            });
         </script>
     @endpush
 </x-app-layout>
