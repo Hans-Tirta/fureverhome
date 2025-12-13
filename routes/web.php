@@ -23,7 +23,8 @@ Route::get('/pets/{pet}', [PetController::class, 'show'])
 // Public article routes
 Route::get('/articles', [ArticleController::class, 'index'])->name('articles.index');
 
-// Public shelter profile
+// Public shelter routes
+Route::get('/shelters', [ShelterController::class, 'index'])->name('shelters.index');
 Route::get('/shelters/{shelter}', [ShelterController::class, 'show'])->name('shelters.show');
 
 // Authenticated Routes

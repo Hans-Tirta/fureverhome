@@ -52,6 +52,10 @@
                         </x-dropdown>
                     </div>
 
+                    <x-nav-link :href="route('shelters.index')" :active="request()->routeIs('shelters.index') || request()->routeIs('shelters.show')">
+                        {{ __('Browse Shelters') }}
+                    </x-nav-link>
+
                     <x-nav-link :href="route('articles.index')" :active="request()->routeIs('articles.index') || request()->routeIs('articles.show')">
                         {{ __('Articles') }}
                     </x-nav-link>
@@ -174,6 +178,10 @@
 
             <x-responsive-nav-link :href="route('pets.index', ['category' => 'other'])" class="pl-8">
                 {{ __('Find Other Animals') }}
+            </x-responsive-nav-link>
+
+            <x-responsive-nav-link :href="route('shelters.index')" :active="request()->routeIs('shelters.index') || request()->routeIs('shelters.show')">
+                {{ __('Browse Shelters') }}
             </x-responsive-nav-link>
 
             <x-responsive-nav-link :href="route('articles.index')" :active="request()->routeIs('articles.index') || request()->routeIs('articles.show')">

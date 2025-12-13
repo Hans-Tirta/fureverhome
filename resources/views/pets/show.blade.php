@@ -155,12 +155,6 @@
                                 @if ($pet->shelter->email)
                                     <p>{{ $pet->shelter->email }}</p>
                                 @endif
-                                @if ($pet->shelter->website)
-                                    <a href="{{ $pet->shelter->website }}" target="_blank"
-                                        class="text-accent-red hover:underline inline-block">
-                                        Visit Website
-                                    </a>
-                                @endif
                             </div>
                             <a href="{{ route('shelters.show', $pet->shelter) }}"
                                 class="inline-flex items-center text-accent-blue hover:text-opacity-80 text-sm font-medium">
@@ -182,10 +176,12 @@
                                         class="w-full bg-accent-red hover:bg-opacity-90 text-white font-semibold py-3 px-6 rounded-lg transition shadow-sm text-center">
                                         Request Adoption
                                     </a>
-                                    <button
-                                        class="w-full border-2 border-accent-yellow text-accent-yellow hover:bg-accent-yellow hover:text-white font-semibold py-3 px-6 rounded-lg transition">
-                                        Sponsor {{ $pet->name }}
-                                    </button>
+                                    @if ($pet->shelter->is_verified)
+                                        <a href="{{ route('sponsorships.create', $pet->shelter) }}"
+                                            class="w-full border-2 border-accent-green text-accent-green hover:bg-accent-green hover:text-white font-semibold py-3 px-6 rounded-lg transition text-center">
+                                            Sponsor This Shelter
+                                        </a>
+                                    @endif
                                 @else
                                     <div class="text-center p-4 bg-blue-50 rounded-lg border border-blue-200">
                                         <p class="text-sm text-blue-800">Adoption requests are available for adopter

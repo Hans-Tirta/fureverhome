@@ -4,13 +4,13 @@
 
             {{-- Back Button --}}
             <div class="mb-6">
-                <a href="{{ route('pets.index') }}"
+                <a href="{{ route('shelters.index') }}"
                     class="inline-flex items-center text-text-secondary hover:text-text-primary">
                     <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
                     </svg>
-                    Back to Browse Pets
+                    Back to Browse Shelters
                 </a>
             </div>
 
@@ -35,6 +35,23 @@
                             </div>
                             @if ($shelter->description)
                                 <p class="text-text-secondary text-lg mb-4">{{ $shelter->description }}</p>
+                            @endif
+
+                            {{-- Sponsor Button - Only for verified shelters and adopter role --}}
+                            @if ($shelter->is_verified)
+                                @auth
+                                    @if (auth()->user()->role === 'adopter')
+                                        <a href="{{ route('sponsorships.create', $shelter) }}"
+                                            class="inline-flex items-center px-6 py-3 bg-accent-green text-white font-semibold rounded-lg hover:opacity-90 transition">
+                                            <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                                <path fill-rule="evenodd"
+                                                    d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z"
+                                                    clip-rule="evenodd" />
+                                            </svg>
+                                            Sponsor This Shelter
+                                        </a>
+                                    @endif
+                                @endauth
                             @endif
                         </div>
                     </div>
