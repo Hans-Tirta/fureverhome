@@ -12,7 +12,7 @@
                     </svg>
                     Back to Articles
                 </a>
-                
+
                 @auth
                     @if(auth()->user()->isAdmin())
                         <div class="flex gap-3">
@@ -103,7 +103,7 @@
                     <div class="mt-8 pt-6 border-t border-background-secondary">
                         <div class="flex items-center gap-3">
                             <div
-                                class="w-12 h-12 rounded-full bg-gradient-to-br from-accent-red to-accent-orange flex items-center justify-center text-white font-bold text-lg">
+                                class="w-12 h-12 rounded-full bg-accent-yellow flex items-center justify-center text-white font-bold text-lg">
                                 {{ strtoupper(substr($article->author->name, 0, 1)) }}
                             </div>
                             <div>

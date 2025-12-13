@@ -52,7 +52,7 @@
                         </x-dropdown>
                     </div>
 
-                    <x-nav-link :href="route('articles.index')" :active="request()->routeIs('articles.*')">
+                    <x-nav-link :href="route('articles.index')" :active="request()->routeIs('articles.index') || request()->routeIs('articles.show')">
                         {{ __('Articles') }}
                     </x-nav-link>
 
@@ -73,7 +73,9 @@
                         @endif
 
                         @if (auth()->user()->isAdmin())
-                            <x-nav-link :href="route('articles.manage')" :active="request()->routeIs('articles.manage') || request()->routeIs('articles.create') || request()->routeIs('articles.edit')">
+                            <x-nav-link :href="route('articles.manage')" :active="request()->routeIs('articles.manage') ||
+                                request()->routeIs('articles.create') ||
+                                request()->routeIs('articles.edit')">
                                 {{ __('Manage Articles') }}
                             </x-nav-link>
                             <x-nav-link :href="route('admin.shelters')" :active="request()->routeIs('admin.shelters')">
@@ -174,7 +176,7 @@
                 {{ __('Find Other Animals') }}
             </x-responsive-nav-link>
 
-            <x-responsive-nav-link :href="route('articles.index')" :active="request()->routeIs('articles.*')">
+            <x-responsive-nav-link :href="route('articles.index')" :active="request()->routeIs('articles.index') || request()->routeIs('articles.show')">
                 {{ __('Articles') }}
             </x-responsive-nav-link>
 
@@ -195,7 +197,9 @@
                 @endif
 
                 @if (auth()->user()->isAdmin())
-                    <x-responsive-nav-link :href="route('articles.manage')" :active="request()->routeIs('articles.manage') || request()->routeIs('articles.create') || request()->routeIs('articles.edit')">
+                    <x-responsive-nav-link :href="route('articles.manage')" :active="request()->routeIs('articles.manage') ||
+                        request()->routeIs('articles.create') ||
+                        request()->routeIs('articles.edit')">
                         {{ __('Manage Articles') }}
                     </x-responsive-nav-link>
                     <x-responsive-nav-link :href="route('admin.shelters')" :active="request()->routeIs('admin.shelters')">
