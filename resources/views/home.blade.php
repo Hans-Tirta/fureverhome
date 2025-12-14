@@ -12,10 +12,10 @@
         <!-- Hero Content -->
         <div class="relative z-10 max-w-7xl mx-auto py-24 px-4 sm:px-6 lg:px-8 text-center w-full">
             <h1 class="text-5xl md:text-6xl font-bold mb-6 text-white drop-shadow-lg">
-                Find Your New Best Friend
+                {{ __('home.hero.title') }}
             </h1>
             <p class="text-xl md:text-2xl mb-10 text-white/95 max-w-3xl mx-auto drop-shadow">
-                Browse and discover amazing pets from trusted shelters near you
+                {{ __('home.hero.subtitle') }}
             </p>
 
             <!-- Category Cards -->
@@ -38,12 +38,10 @@
                 <!-- Content -->
                 <div>
                     <h2 class="text-3xl md:text-4xl font-bold text-text-primary mb-6">
-                        Connecting Hearts, Creating Forever Homes
+                        {{ __('home.about.title') }}
                     </h2>
                     <p class="text-lg text-text-secondary mb-8 leading-relaxed">
-                        FureverHome is a dedicated platform that bridges the gap between loving pets in need and caring
-                        families ready to adopt. We work with verified shelters across the region to ensure every pet
-                        finds their perfect match.
+                        {{ __('home.about.description') }}
                     </p>
 
                     <!-- Statistics -->
@@ -52,13 +50,13 @@
                             <div class="text-3xl font-bold text-accent-green mb-2">
                                 {{ \App\Models\Adoption::where('status', 'completed')->count() }}
                             </div>
-                            <div class="text-text-secondary">Successful Adoptions</div>
+                            <div class="text-text-secondary">{{ __('home.about.stats.successful_adoptions') }}</div>
                         </div>
                         <div class="text-center p-4 bg-background-primary rounded-lg">
                             <div class="text-3xl font-bold text-accent-blue mb-2">
                                 {{ \App\Models\Shelter::where('is_verified', true)->count() }}
                             </div>
-                            <div class="text-text-secondary">Trusted Shelters</div>
+                            <div class="text-text-secondary">{{ __('home.about.stats.trusted_shelters') }}</div>
                         </div>
                     </div>
                 </div>
@@ -77,27 +75,26 @@
     <!-- How It Works Section -->
     <div class="bg-background-secondary text-text-primary py-16">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl font-bold text-center mb-12">How It Works</h2>
+            <h2 class="text-3xl font-bold text-center mb-12">{{ __('home.how_it_works.title') }}</h2>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div class="text-center">
-                    <img src="{{ asset('images/browse.webp') }}" alt="Browse pets"
+                    <img src="{{ asset('images/browse.webp') }}" alt="{{ __('home.how_it_works.steps.browse.alt') }}"
                         class="w-40 h-40 bg-white rounded-full mx-auto mb-4 object-cover">
-                    <h3 class="font-semibold text-lg mb-2">1. Browse Pets</h3>
-                    <p>Explore our database of lovable pets from verified shelters</p>
+                    <h3 class="font-semibold text-lg mb-2">{{ __('home.how_it_works.steps.browse.title') }}</h3>
+                    <p>{{ __('home.how_it_works.steps.browse.description') }}</p>
                 </div>
                 <div class="text-center">
-                    <img src="{{ asset('images/contact.webp') }}" alt="Contact shelter"
+                    <img src="{{ asset('images/contact.webp') }}"
+                        alt="{{ __('home.how_it_works.steps.contact.alt') }}"
                         class="w-40 h-40 bg-white rounded-full mx-auto mb-4 object-cover">
-                    <h3 class="font-semibold text-lg mb-2">2. Contact Shelter</h3>
-                    <p>Reach out to the shelter directly using provided contact
-                        information</p>
+                    <h3 class="font-semibold text-lg mb-2">{{ __('home.how_it_works.steps.contact.title') }}</h3>
+                    <p>{{ __('home.how_it_works.steps.contact.description') }}</p>
                 </div>
                 <div class="text-center">
-                    <img src="{{ asset('images/adopt.webp') }}" alt="Adopt and love"
+                    <img src="{{ asset('images/adopt.webp') }}" alt="{{ __('home.how_it_works.steps.adopt.alt') }}"
                         class="w-40 h-40 bg-white rounded-full mx-auto mb-4 object-cover">
-                    <h3 class="font-semibold text-lg mb-2">3. Adopt & Love</h3>
-                    <p>Complete the adoption process and welcome your new family member
-                    </p>
+                    <h3 class="font-semibold text-lg mb-2">{{ __('home.how_it_works.steps.adopt.title') }}</h3>
+                    <p>{{ __('home.how_it_works.steps.adopt.description') }}</p>
                 </div>
             </div>
         </div>

@@ -13,7 +13,7 @@
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('home')" :active="request()->routeIs('home')">
-                        {{ __('Home') }}
+                        {{ __('messages.home') }}
                     </x-nav-link>
 
                     {{-- Browse Pets Dropdown --}}
@@ -22,7 +22,7 @@
                             <x-slot name="trigger">
                                 <button
                                     class="inline-flex items-center px-1 pt-1 border-b-2 {{ request()->routeIs('pets.index') || request()->routeIs('pets.show') ? 'border-accent-red text-text-primary' : 'border-transparent text-text-secondary hover:text-text-primary hover:border-text-muted' }} text-sm font-medium leading-5 focus:outline-none transition duration-150 ease-in-out h-16">
-                                    <div>Browse Pets</div>
+                                    <div>{{ __('messages.browse_pets_menu') }}</div>
                                     <div class="ml-1">
                                         <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg"
                                             viewBox="0 0 20 20">
@@ -36,43 +36,43 @@
 
                             <x-slot name="content">
                                 <x-dropdown-link :href="route('pets.index')">
-                                    {{ __('All Pets') }}
+                                    {{ __('messages.all_pets') }}
                                 </x-dropdown-link>
                                 <div class="border-t border-background-secondary"></div>
                                 <x-dropdown-link :href="route('pets.index', ['category' => 'dogs'])">
-                                    {{ __('Find Dogs') }}
+                                    {{ __('messages.find_dogs') }}
                                 </x-dropdown-link>
                                 <x-dropdown-link :href="route('pets.index', ['category' => 'cats'])">
-                                    {{ __('Find Cats') }}
+                                    {{ __('messages.find_cats') }}
                                 </x-dropdown-link>
                                 <x-dropdown-link :href="route('pets.index', ['category' => 'other'])">
-                                    {{ __('Find Other Animals') }}
+                                    {{ __('messages.find_other_animals') }}
                                 </x-dropdown-link>
                             </x-slot>
                         </x-dropdown>
                     </div>
 
                     <x-nav-link :href="route('shelters.index')" :active="request()->routeIs('shelters.index') || request()->routeIs('shelters.show')">
-                        {{ __('Browse Shelters') }}
+                        {{ __('messages.browse_shelters') }}
                     </x-nav-link>
 
                     <x-nav-link :href="route('articles.index')" :active="request()->routeIs('articles.index') || request()->routeIs('articles.show')">
-                        {{ __('Articles') }}
+                        {{ __('messages.articles') }}
                     </x-nav-link>
 
                     @auth
                         @if (auth()->user()->role === 'adopter')
                             <x-nav-link :href="route('adoptions.my-requests')" :active="request()->routeIs('adoptions.my-requests')">
-                                {{ __('My Requests') }}
+                                {{ __('messages.my_requests') }}
                             </x-nav-link>
                         @endif
 
                         @if (auth()->user()->isShelter())
                             <x-nav-link :href="route('pets.manage')" :active="request()->routeIs('pets.manage')">
-                                {{ __('Manage Pets') }}
+                                {{ __('messages.manage_pets') }}
                             </x-nav-link>
                             <x-nav-link :href="route('adoptions.index')" :active="request()->routeIs('adoptions.index')">
-                                {{ __('Adoptions') }}
+                                {{ __('messages.adoptions') }}
                             </x-nav-link>
                         @endif
 
@@ -80,10 +80,10 @@
                             <x-nav-link :href="route('articles.manage')" :active="request()->routeIs('articles.manage') ||
                                 request()->routeIs('articles.create') ||
                                 request()->routeIs('articles.edit')">
-                                {{ __('Manage Articles') }}
+                                {{ __('messages.manage_articles') }}
                             </x-nav-link>
                             <x-nav-link :href="route('admin.shelters')" :active="request()->routeIs('admin.shelters')">
-                                {{ __('Shelter Verification') }}
+                                {{ __('messages.shelter_verification') }}
                             </x-nav-link>
                         @endif
                     @endauth
@@ -124,11 +124,11 @@
 
                         <x-slot name="content">
                             <x-dropdown-link :href="route('dashboard')">
-                                {{ __('Dashboard') }}
+                                {{ __('messages.dashboard') }}
                             </x-dropdown-link>
                             <div class="border-t border-background-secondary"></div>
                             <x-dropdown-link :href="route('profile.edit')">
-                                {{ __('Profile') }}
+                                {{ __('messages.profile') }}
                             </x-dropdown-link>
 
                             <!-- Authentication -->
@@ -138,17 +138,17 @@
                                 <x-dropdown-link :href="route('logout')"
                                     onclick="event.preventDefault();
                                                     this.closest('form').submit();">
-                                    {{ __('Log Out') }}
+                                    {{ __('messages.log_out') }}
                                 </x-dropdown-link>
                             </form>
                         </x-slot>
                     </x-dropdown>
                 @else
                     <a href="{{ route('login') }}"
-                        class="text-sm text-text-secondary hover:text-text-primary px-3 py-2 transition">{{ __('Log in') }}</a>
+                        class="text-sm text-text-secondary hover:text-text-primary px-3 py-2 transition">{{ __('messages.log_in') }}</a>
                     @if (Route::has('register'))
                         <a href="{{ route('register') }}"
-                            class="ml-4 text-sm text-white bg-accent-red hover:bg-opacity-90 px-4 py-2 rounded-md transition shadow-sm">{{ __('Register') }}</a>
+                            class="ml-4 text-sm text-white bg-accent-red hover:bg-opacity-90 px-4 py-2 rounded-md transition shadow-sm">{{ __('messages.register') }}</a>
                     @endif
                 @endauth
             </div>
@@ -173,46 +173,46 @@
     <div :class="{ 'block': open, 'hidden': !open }" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('home')" :active="request()->routeIs('home')">
-                {{ __('Home') }}
+                {{ __('messages.home') }}
             </x-responsive-nav-link>
 
             <x-responsive-nav-link :href="route('pets.index')" :active="request()->routeIs('pets.*')">
-                {{ __('All Pets') }}
+                {{ __('messages.all_pets') }}
             </x-responsive-nav-link>
 
             <x-responsive-nav-link :href="route('pets.index', ['category' => 'dogs'])" class="pl-8">
-                {{ __('Find Dogs') }}
+                {{ __('messages.find_dogs') }}
             </x-responsive-nav-link>
 
             <x-responsive-nav-link :href="route('pets.index', ['category' => 'cats'])" class="pl-8">
-                {{ __('Find Cats') }}
+                {{ __('messages.find_cats') }}
             </x-responsive-nav-link>
 
             <x-responsive-nav-link :href="route('pets.index', ['category' => 'other'])" class="pl-8">
-                {{ __('Find Other Animals') }}
+                {{ __('messages.find_other_animals') }}
             </x-responsive-nav-link>
 
             <x-responsive-nav-link :href="route('shelters.index')" :active="request()->routeIs('shelters.index') || request()->routeIs('shelters.show')">
-                {{ __('Browse Shelters') }}
+                {{ __('messages.browse_shelters') }}
             </x-responsive-nav-link>
 
             <x-responsive-nav-link :href="route('articles.index')" :active="request()->routeIs('articles.index') || request()->routeIs('articles.show')">
-                {{ __('Articles') }}
+                {{ __('messages.articles') }}
             </x-responsive-nav-link>
 
             @auth
                 @if (auth()->user()->isAdopter())
                     <x-responsive-nav-link :href="route('adoptions.my-requests')" :active="request()->routeIs('adoptions.my-requests')">
-                        {{ __('My Requests') }}
+                        {{ __('messages.my_requests') }}
                     </x-responsive-nav-link>
                 @endif
 
                 @if (auth()->user()->isShelter())
                     <x-responsive-nav-link :href="route('pets.manage')" :active="request()->routeIs('pets.manage')">
-                        {{ __('Manage Pets') }}
+                        {{ __('messages.manage_pets') }}
                     </x-responsive-nav-link>
                     <x-responsive-nav-link :href="route('adoptions.index')" :active="request()->routeIs('adoptions.index')">
-                        {{ __('Adoptions') }}
+                        {{ __('messages.adoptions') }}
                     </x-responsive-nav-link>
                 @endif
 
@@ -220,10 +220,10 @@
                     <x-responsive-nav-link :href="route('articles.manage')" :active="request()->routeIs('articles.manage') ||
                         request()->routeIs('articles.create') ||
                         request()->routeIs('articles.edit')">
-                        {{ __('Manage Articles') }}
+                        {{ __('messages.manage_articles') }}
                     </x-responsive-nav-link>
                     <x-responsive-nav-link :href="route('admin.shelters')" :active="request()->routeIs('admin.shelters')">
-                        {{ __('Shelter Verification') }}
+                        {{ __('messages.shelter_verification') }}
                     </x-responsive-nav-link>
                 @endif
             @endauth
@@ -254,11 +254,11 @@
 
                 <div class="mt-3 space-y-1">
                     <x-responsive-nav-link :href="route('dashboard')">
-                        {{ __('Dashboard') }}
+                        {{ __('messages.dashboard') }}
                     </x-responsive-nav-link>
 
                     <x-responsive-nav-link :href="route('profile.edit')">
-                        {{ __('Profile') }}
+                        {{ __('messages.profile') }}
                     </x-responsive-nav-link>
 
                     <!-- Authentication -->
@@ -268,7 +268,7 @@
                         <x-responsive-nav-link :href="route('logout')"
                             onclick="event.preventDefault();
                                             this.closest('form').submit();">
-                            {{ __('Log Out') }}
+                            {{ __('messages.log_out') }}
                         </x-responsive-nav-link>
                     </form>
                 </div>
@@ -292,12 +292,12 @@
 
                 <div class="mt-3 space-y-1 border-t border-background-secondary pt-3">
                     <x-responsive-nav-link :href="route('login')">
-                        {{ __('Log in') }}
+                        {{ __('messages.log_in') }}
                     </x-responsive-nav-link>
 
                     @if (Route::has('register'))
                         <x-responsive-nav-link :href="route('register')">
-                            {{ __('Register') }}
+                            {{ __('messages.register') }}
                         </x-responsive-nav-link>
                     @endif
                 </div>
