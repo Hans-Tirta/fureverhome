@@ -9,6 +9,14 @@ use App\Http\Controllers\ShelterController;
 use App\Http\Controllers\SponsorshipController;
 use Illuminate\Support\Facades\Route;
 
+// Language Switcher Route
+Route::get('/language/{locale}', function ($locale) {
+    if (in_array($locale, config('app.available_locales'))) {
+        session(['locale' => $locale]);
+    }
+    return redirect()->back();
+})->name('language.switch');
+
 // Public Routes
 Route::get('/', function () {
     return view('home');

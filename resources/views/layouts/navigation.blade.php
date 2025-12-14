@@ -91,7 +91,19 @@
             </div>
 
             <!-- Settings Dropdown -->
-            <div class="hidden sm:flex sm:items-center sm:ms-6">
+            <div class="hidden sm:flex sm:items-center sm:ms-6 gap-4">
+                <!-- Language Switcher -->
+                <div class="flex items-center gap-2 border-r border-background-secondary pr-4">
+                    <a href="{{ route('language.switch', 'en') }}"
+                        class="px-3 py-1.5 rounded-md text-sm font-medium transition {{ app()->getLocale() === 'en' ? 'bg-accent-red text-white' : 'text-text-secondary hover:text-text-primary hover:bg-background-primary' }}">
+                        EN
+                    </a>
+                    <a href="{{ route('language.switch', 'id') }}"
+                        class="px-3 py-1.5 rounded-md text-sm font-medium transition {{ app()->getLocale() === 'id' ? 'bg-accent-red text-white' : 'text-text-secondary hover:text-text-primary hover:bg-background-primary' }}">
+                        ID
+                    </a>
+                </div>
+
                 @auth
                     <x-dropdown align="right" width="48">
                         <x-slot name="trigger">
@@ -220,7 +232,22 @@
         <!-- Responsive Settings Options -->
         @auth
             <div class="pt-4 pb-1 border-t border-background-secondary">
-                <div class="px-4">
+                <!-- Language Switcher Mobile -->
+                <div class="px-4 pb-3">
+                    <div class="text-xs font-medium text-text-secondary mb-2">Language / Bahasa</div>
+                    <div class="flex gap-2">
+                        <a href="{{ route('language.switch', 'en') }}"
+                            class="flex-1 text-center px-3 py-2 rounded-md text-sm font-medium transition {{ app()->getLocale() === 'en' ? 'bg-accent-red text-white' : 'text-text-secondary bg-background-primary hover:text-text-primary' }}">
+                            English
+                        </a>
+                        <a href="{{ route('language.switch', 'id') }}"
+                            class="flex-1 text-center px-3 py-2 rounded-md text-sm font-medium transition {{ app()->getLocale() === 'id' ? 'bg-accent-red text-white' : 'text-text-secondary bg-background-primary hover:text-text-primary' }}">
+                            Indonesia
+                        </a>
+                    </div>
+                </div>
+
+                <div class="px-4 border-t border-background-secondary pt-3">
                     <div class="font-medium text-base text-text-primary">{{ Auth::user()->name }}</div>
                     <div class="font-medium text-sm text-text-secondary">{{ Auth::user()->email }}</div>
                 </div>
@@ -248,7 +275,22 @@
             </div>
         @else
             <div class="pt-4 pb-1 border-t border-background-secondary">
-                <div class="mt-3 space-y-1">
+                <!-- Language Switcher Mobile -->
+                <div class="px-4 pb-3">
+                    <div class="text-xs font-medium text-text-secondary mb-2">Language / Bahasa</div>
+                    <div class="flex gap-2">
+                        <a href="{{ route('language.switch', 'en') }}"
+                            class="flex-1 text-center px-3 py-2 rounded-md text-sm font-medium transition {{ app()->getLocale() === 'en' ? 'bg-accent-red text-white' : 'text-text-secondary bg-background-primary hover:text-text-primary' }}">
+                            English
+                        </a>
+                        <a href="{{ route('language.switch', 'id') }}"
+                            class="flex-1 text-center px-3 py-2 rounded-md text-sm font-medium transition {{ app()->getLocale() === 'id' ? 'bg-accent-red text-white' : 'text-text-secondary bg-background-primary hover:text-text-primary' }}">
+                            Indonesia
+                        </a>
+                    </div>
+                </div>
+
+                <div class="mt-3 space-y-1 border-t border-background-secondary pt-3">
                     <x-responsive-nav-link :href="route('login')">
                         {{ __('Log in') }}
                     </x-responsive-nav-link>
