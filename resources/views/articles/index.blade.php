@@ -3,21 +3,21 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
             <!-- Header -->
-            <div class="mb-8 flex items-center justify-between">
+                <div class="mb-8 flex items-center justify-between">
                 <div>
-                    <h1 class="text-3xl font-bold text-text-primary mb-2">Articles & Guides</h1>
-                    <p class="text-text-secondary">Learn about pet care, adoption tips, and more</p>
+                    <h1 class="text-3xl font-bold text-text-primary mb-2">{{ __('articles.index.title') }}</h1>
+                    <p class="text-text-secondary">{{ __('articles.index.subtitle') }}</p>
                 </div>
                 @auth
                     @if (auth()->user()->isAdmin())
                         <div class="flex gap-3">
                             <a href="{{ route('articles.manage') }}"
                                 class="px-4 py-2 rounded-md border border-gray-300 bg-white text-gray-700 hover:bg-gray-50 font-semibold">
-                                Manage Articles
+                                {{ __('articles.index.manage_page.title') }}
                             </a>
                             <a href="{{ route('articles.create') }}"
                                 class="px-4 py-2 rounded-md bg-accent-red text-white font-semibold hover:bg-opacity-90 shadow-sm">
-                                Create Article
+                                {{ __('articles.index.manage_page.create') }}
                             </a>
                         </div>
                     @endif
@@ -33,12 +33,11 @@
                             d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253">
                         </path>
                     </svg>
-                    <h3 class="text-2xl font-bold text-text-primary mb-2">Articles Coming Soon</h3>
-                    <p class="text-text-secondary mb-6">We're working on creating helpful content about pet care and
-                        adoption. Check back soon!</p>
+                    <h3 class="text-2xl font-bold text-text-primary mb-2">{{ __('articles.index.empty_title') }}</h3>
+                    <p class="text-text-secondary mb-6">{{ __('articles.index.empty_description') }}</p>
                     <a href="{{ route('pets.index') }}"
                         class="inline-block px-6 py-3 rounded-md bg-accent-red text-white font-semibold hover:bg-opacity-90 shadow-sm">
-                        Browse Available Pets
+                        {{ __('articles.index.empty_cta') }}
                     </a>
                 </div>
             @else

@@ -1,14 +1,14 @@
 <x-app-layout>
     <div class="min-h-screen bg-background-primary py-8">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between mb-8">
+                <div class="flex items-center justify-between mb-8">
                 <div>
-                    <h1 class="text-3xl font-bold text-text-primary">Manage Articles</h1>
-                    <p class="text-text-secondary">Create and manage your articles</p>
+                    <h1 class="text-3xl font-bold text-text-primary">{{ __('articles.index.manage_page.title') }}</h1>
+                    <p class="text-text-secondary">{{ __('articles.index.manage_page.subtitle') }}</p>
                 </div>
                 <a href="{{ route('articles.create') }}"
                     class="px-4 py-2 rounded-md bg-accent-red text-white font-semibold hover:bg-opacity-90 shadow-sm">
-                    Create Article
+                    {{ __('articles.index.manage_page.create') }}
                 </a>
             </div>
 
@@ -24,29 +24,29 @@
                         <table class="min-w-full divide-y divide-gray-200">
                             <thead class="bg-gray-50">
                                 <tr>
-                                    <th
+                                        <th
                                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Title
+                                        {{ __('articles.index.manage_page.table.title') }}
                                     </th>
-                                    <th
+                                        <th
                                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Category
+                                        {{ __('articles.index.manage_page.table.category') }}
                                     </th>
-                                    <th
+                                        <th
                                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Author
+                                        {{ __('articles.index.manage_page.table.author') }}
                                     </th>
-                                    <th
+                                        <th
                                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Views
+                                        {{ __('articles.index.manage_page.table.views') }}
                                     </th>
-                                    <th
+                                        <th
                                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Created
+                                        {{ __('articles.index.manage_page.table.created') }}
                                     </th>
-                                    <th
+                                        <th
                                         class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Actions
+                                        {{ __('articles.index.manage_page.table.actions') }}
                                     </th>
                                 </tr>
                             </thead>
@@ -90,7 +90,7 @@
                                             @else
                                                 <span
                                                     class="px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-gray-100 text-gray-600">
-                                                    Uncategorized
+                                                    {{ __('articles.index.manage_page.uncategorized') }}
                                                 </span>
                                             @endif
                                         </td>
@@ -125,16 +125,16 @@
                                         <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                             <div class="flex items-center justify-end gap-3">
                                                 <a href="{{ route('articles.show', $article) }}"
-                                                    class="text-blue-600 hover:text-blue-900 font-medium">View</a>
+                                                    class="text-blue-600 hover:text-blue-900 font-medium">{{ __('messages.view') }}</a>
                                                 <a href="{{ route('articles.edit', $article) }}"
-                                                    class="text-indigo-600 hover:text-indigo-900 font-medium">Edit</a>
+                                                    class="text-indigo-600 hover:text-indigo-900 font-medium">{{ __('messages.edit') }}</a>
                                                 <form method="POST" action="{{ route('articles.destroy', $article) }}"
                                                     class="inline"
-                                                    onsubmit="return confirm('Are you sure you want to delete this article?');">
+                                                    onsubmit="return confirm('{{ __('articles.show.delete_confirm') }}');">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit"
-                                                        class="text-red-600 hover:text-red-900 font-medium">Delete</button>
+                                                        class="text-red-600 hover:text-red-900 font-medium">{{ __('articles.show.delete') }}</button>
                                                 </form>
                                             </div>
                                         </td>
@@ -157,12 +157,11 @@
                             d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253">
                         </path>
                     </svg>
-                    <h3 class="text-2xl font-bold text-text-primary mb-2">No Articles Yet</h3>
-                    <p class="text-text-secondary mb-6">Start creating articles to share knowledge about pet care and
-                        adoption.</p>
+                    <h3 class="text-2xl font-bold text-text-primary mb-2">{{ __('articles.index.manage_page.empty_title') }}</h3>
+                    <p class="text-text-secondary mb-6">{{ __('articles.index.manage_page.empty_description') }}</p>
                     <a href="{{ route('articles.create') }}"
                         class="inline-block px-6 py-3 rounded-md bg-accent-red text-white font-semibold hover:bg-opacity-90 shadow-sm">
-                        Create Your First Article
+                        {{ __('articles.index.manage_page.empty_cta') }}
                     </a>
                 </div>
             @endif

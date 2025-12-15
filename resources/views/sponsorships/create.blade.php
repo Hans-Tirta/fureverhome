@@ -4,20 +4,20 @@
 
             <!-- Back Button -->
             <div class="mb-6">
-                <a href="{{ route('shelters.show', $shelter) }}"
+                    <a href="{{ route('shelters.show', $shelter) }}"
                     class="inline-flex items-center text-text-secondary hover:text-text-primary">
                     <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
                     </svg>
-                    Back to Shelter Profile
+                    {{ __('sponsorships.create.back_to_shelter') }}
                 </a>
             </div>
 
             <!-- Header -->
-            <div class="mb-8">
-                <h1 class="text-3xl font-bold text-text-primary mb-2">Support {{ $shelter->name }}</h1>
-                <p class="text-text-secondary">Your donation helps care for all animals at this shelter</p>
+                <div class="mb-8">
+                <h1 class="text-3xl font-bold text-text-primary mb-2">{{ __('sponsorships.create.title') }} {{ $shelter->name }}</h1>
+                <p class="text-text-secondary">{{ __('sponsorships.create.subtitle') }}</p>
             </div>
 
             <!-- Shelter Summary Card -->
@@ -42,7 +42,7 @@
                                             d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
                                             clip-rule="evenodd" />
                                     </svg>
-                                    Verified
+                                    {{ __('shelters.show.verified') }}
                                 </span>
                             @endif
                         </div>
@@ -54,7 +54,7 @@
                         <div class="flex flex-wrap gap-4 text-sm text-text-secondary">
                             @if ($shelter->address)
                                 <div class="flex items-center gap-1">
-                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                             d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -69,7 +69,7 @@
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4" />
                                 </svg>
-                                <span>{{ $shelter->pets->count() }} animals</span>
+                                <span>{{ $shelter->pets->count() }} {{ __('messages.pets') ?? 'animals' }}</span>
                             </div>
                         </div>
                     </div>
@@ -86,7 +86,7 @@
 
                         <!-- Donation Amount -->
                         <div>
-                            <h2 class="text-lg font-semibold text-text-primary mb-4">Donation Amount</h2>
+                            <h2 class="text-lg font-semibold text-text-primary mb-4">{{ __('sponsorships.create.donation_amount') }}</h2>
 
                             <!-- Preset Amounts -->
                             <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
@@ -101,39 +101,39 @@
                             <!-- Custom Amount -->
                             <div>
                                 <label class="block text-sm font-medium text-text-secondary mb-2">
-                                    Or enter custom amount (Minimum Rp 1.000) *
+                                    {{ __('sponsorships.create.or_enter_custom', ['min' => '1.000']) }}
                                 </label>
-                                <input type="number" id="amountInput" name="amount" value="{{ old('amount') }}"
+                                    <input type="number" id="amountInput" name="amount" value="{{ old('amount') }}"
                                     min="1000" step="1000"
                                     class="w-full rounded-md border-background-secondary focus:border-accent-red focus:ring focus:ring-accent-red focus:ring-opacity-50"
-                                    placeholder="Enter amount (e.g., 50000)" required>
+                                    placeholder="{{ __('sponsorships.create.enter_amount_placeholder') }}" required>
                                 @error('amount')
                                     <p class="text-accent-red text-sm mt-1">{{ $message }}</p>
                                 @enderror
-                                <p class="text-xs text-text-muted mt-1">Minimum donation: Rp 1.000</p>
+                                <p class="text-xs text-text-muted mt-1">{{ __('sponsorships.create.minimum_donation', ['min' => '1.000']) }}</p>
                             </div>
                         </div>
 
                         <!-- Message (Optional) -->
                         <div>
-                            <h2 class="text-lg font-semibold text-text-primary mb-4">Message (Optional)</h2>
+                            <h2 class="text-lg font-semibold text-text-primary mb-4">{{ __('sponsorships.create.message_optional') }}</h2>
                             <div>
                                 <label class="block text-sm font-medium text-text-secondary mb-2">
-                                    Leave a message for the shelter
+                                    {{ __('sponsorships.create.leave_message') }}
                                 </label>
                                 <textarea name="message" rows="4"
                                     class="mt-1 w-full rounded-md border border-background-secondary focus:border-accent-red focus:ring focus:ring-accent-red focus:ring-opacity-50"
-                                    placeholder="Share your support message...">{{ old('message') }}</textarea>
+                                    placeholder="{{ __('sponsorships.create.leave_message') }}">{{ old('message') }}</textarea>
                                 @error('message')
                                     <p class="text-accent-red text-sm mt-1">{{ $message }}</p>
                                 @enderror
-                                <p class="text-xs text-text-muted mt-1">Your message will be visible to the shelter</p>
+                                <p class="text-xs text-text-muted mt-1">{{ __('sponsorships.create.message_visible_note') }}</p>
                             </div>
                         </div>
 
                         <!-- Anonymous Option -->
                         <div>
-                            <h2 class="text-lg font-semibold text-text-primary mb-4">Privacy</h2>
+                            <h2 class="text-lg font-semibold text-text-primary mb-4">{{ __('sponsorships.create.privacy') }}</h2>
                             <label class="flex items-start gap-3 cursor-pointer group">
                                 <input type="checkbox" name="is_anonymous" value="1"
                                     {{ old('is_anonymous') ? 'checked' : '' }}
@@ -141,11 +141,10 @@
                                 <div class="flex-1">
                                     <span
                                         class="block text-sm font-medium text-text-primary group-hover:text-accent-red">
-                                        Make my donation anonymous
+                                        {{ __('sponsorships.create.make_anonymous') }}
                                     </span>
                                     <span class="block text-xs text-text-secondary mt-1">
-                                        Your name will be hidden from public donation lists, but the shelter will still
-                                        see your information
+                                        {{ __('sponsorships.create.note_privacy') }}
                                     </span>
                                 </div>
                             </label>
@@ -155,11 +154,11 @@
                         <div class="flex items-center justify-end gap-3 pt-4 border-t border-background-secondary">
                             <a href="{{ route('shelters.show', $shelter) }}"
                                 class="px-4 py-2 rounded-md border border-background-secondary bg-white text-text-secondary hover:bg-background-primary">
-                                Cancel
+                                {{ __('sponsorships.create.cancel') }}
                             </a>
                             <button type="submit"
                                 class="px-6 py-2 rounded-md bg-accent-red text-white font-semibold hover:bg-opacity-90 shadow-sm">
-                                Proceed to Payment
+                                {{ __('sponsorships.create.submit') }}
                             </button>
                         </div>
                     </div>
@@ -175,7 +174,7 @@
                             d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
                             clip-rule="evenodd" />
                     </svg>
-                    <span>Secure payment powered by Midtrans</span>
+                    <span>{{ __('sponsorships.create.secure_payment') }}</span>
                 </div>
             </div>
 
@@ -206,10 +205,11 @@
 
                 const submitButton = this.querySelector('button[type="submit"]');
                 const originalText = submitButton.textContent;
+                const processingText = @json(__('sponsorships.create.processing'));
 
                 // Disable submit button and show loading
                 submitButton.disabled = true;
-                submitButton.textContent = 'Processing...';
+                submitButton.textContent = processingText;
 
                 // Get form data
                 const formData = new FormData(this);
@@ -235,13 +235,13 @@
                                 },
                                 onPending: function(result) {
                                     // Payment pending
-                                    alert('Payment is pending. Please complete your payment.');
+                                    alert(@json(__('sponsorships.create.pending_alert')));
                                     submitButton.disabled = false;
                                     submitButton.textContent = originalText;
                                 },
                                 onError: function(result) {
                                     // Payment error
-                                    alert('Payment failed. Please try again.');
+                                    alert(@json(__('sponsorships.create.failed_alert')));
                                     submitButton.disabled = false;
                                     submitButton.textContent = originalText;
                                 },

@@ -32,4 +32,15 @@ return [
     'register_as_shelter' => 'Daftar sebagai Shelter',
     'register_adopter_account' => 'Daftar Akun Adopter',
     'register_shelter_account' => 'Daftar Akun Shelter',
+    'verify_email' => [
+        'message' => 'Terima kasih telah mendaftar! Sebelum memulai, bisakah Anda memverifikasi alamat email Anda dengan mengklik tautan yang baru saja kami kirimkan? Jika Anda tidak menerima emailnya, kami akan dengan senang hati mengirimkannya lagi.',
+        'link_sent' => 'Tautan verifikasi baru telah dikirim ke alamat email yang Anda berikan saat pendaftaran.',
+        'resend' => 'Kirim Ulang Email Verifikasi',
+    ],
+    'register' => [
+        'account_title' => 'Informasi Akun',
+        'shelter_title' => 'Informasi Shelter',
+        'note_title' => 'Catatan:',
+        'note_message' => 'Pendaftaran shelter Anda akan ditinjau oleh tim admin kami. Anda akan dapat memposting hewan setelah akun Anda diverifikasi.',
+    ],
 ];

@@ -4,8 +4,8 @@
 
             <!-- Header -->
             <div class="mb-8">
-                <h1 class="text-3xl font-bold text-text-primary mb-2">My Adoption Requests</h1>
-                <p class="text-text-secondary">Track the status of your adoption applications</p>
+                <h1 class="text-3xl font-bold text-text-primary mb-2">{{ __('adoptions.index.title') }}</h1>
+                <p class="text-text-secondary">{{ __('adoptions.index.subtitle') }}</p>
             </div>
 
             {{-- Requests Grid --}}
@@ -34,7 +34,7 @@
                                 @else
                                     <div
                                         class="w-full aspect-square bg-background-secondary flex items-center justify-center">
-                                        <span class="text-text-muted">No image</span>
+                                        <span class="text-text-muted">{{ __('pets.index.no_image') }}</span>
                                     </div>
                                 @endif
                             </a>
@@ -89,7 +89,7 @@
 
                                 <a href="{{ route('adoptions.show', $adoption) }}"
                                     class="block w-full text-center bg-accent-red hover:bg-opacity-90 text-white font-semibold py-2 rounded-md transition">
-                                    View Details
+                                    {{ __('adoptions.index.view_details') }}
                                 </a>
 
                                 @if ($adoption->status === 'pending')
@@ -97,9 +97,9 @@
                                         class="mt-2">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" onclick="return confirm('Cancel this adoption request?')"
+                                        <button type="submit" onclick="return confirm('{{ __('adoptions.show.cancel_confirm') }}')"
                                             class="w-full text-center bg-white border border-background-secondary text-text-secondary hover:bg-background-primary font-medium py-2 rounded-md transition text-sm">
-                                            Cancel Request
+                                            {{ __('adoptions.show.cancel_request') }}
                                         </button>
                                     </form>
                                 @endif
@@ -119,12 +119,11 @@
                             d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z">
                         </path>
                     </svg>
-                    <h3 class="text-2xl font-bold text-text-primary mb-2">No Adoption Requests Yet</h3>
-                    <p class="text-text-secondary mb-6">You haven't submitted any adoption requests. Browse available
-                        pets to get started!</p>
+                    <h3 class="text-2xl font-bold text-text-primary mb-2">{{ __('adoptions.index.empty_title') }}</h3>
+                    <p class="text-text-secondary mb-6">{{ __('adoptions.index.empty_description') }}</p>
                     <a href="{{ route('pets.index') }}"
                         class="inline-block px-6 py-3 rounded-md bg-accent-red text-white font-semibold hover:bg-opacity-90 shadow-sm">
-                        Browse Pets
+                        {{ __('adoptions.index.browse_pets') }}
                     </a>
                 </div>
             @endif

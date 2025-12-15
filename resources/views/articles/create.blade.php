@@ -2,9 +2,8 @@
     <div class="min-h-screen bg-background-primary py-8">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between mb-8">
-                <h1 class="text-3xl font-bold text-text-primary">Create New Article</h1>
-                <a href="{{ route('articles.manage') }}" class="text-text-secondary hover:text-text-primary">Back to
-                    Manage</a>
+                <h1 class="text-3xl font-bold text-text-primary">{{ __('articles.form.create') }}</h1>
+                <a href="{{ route('articles.manage') }}" class="text-text-secondary hover:text-text-primary">{{ __('articles.index.manage') }}</a>
             </div>
 
             <div class="bg-white rounded-lg shadow-md overflow-hidden">
@@ -13,10 +12,10 @@
                     <div class="p-6 space-y-6">
                         <!-- Basic Info -->
                         <div>
-                            <h2 class="text-lg font-semibold text-text-primary mb-4">Article Information</h2>
+                            <h2 class="text-lg font-semibold text-text-primary mb-4">{{ __('articles.form.sections.info') }}</h2>
                             <div class="space-y-4">
                                 <div>
-                                    <label class="block text-sm font-medium text-text-secondary mb-1">Title</label>
+                                    <label class="block text-sm font-medium text-text-secondary mb-1">{{ __('articles.form.fields.title') }}</label>
                                     <input type="text" name="title" value="{{ old('title') }}"
                                         class="w-full rounded-md border border-background-secondary px-4 py-2 focus:ring-2 focus:ring-accent-red focus:border-transparent"
                                         required>
@@ -26,10 +25,10 @@
                                 </div>
 
                                 <div>
-                                    <label class="block text-sm font-medium text-text-secondary mb-1">Category</label>
+                                    <label class="block text-sm font-medium text-text-secondary mb-1">{{ __('articles.form.fields.category') }}</label>
                                     <select name="category_id"
                                         class="w-full rounded-md border border-background-secondary px-4 py-2 focus:ring-2 focus:ring-accent-red focus:border-transparent">
-                                        <option value="">Select category (optional)</option>
+                                        <option value="">{{ __('articles.form.fields.select_category') }}</option>
                                         @foreach ($categories as $category)
                                             <option value="{{ $category->id }}"
                                                 {{ old('category_id') == $category->id ? 'selected' : '' }}>
@@ -43,19 +42,17 @@
                                 </div>
 
                                 <div>
-                                    <label class="block text-sm font-medium text-text-secondary mb-1">Featured
-                                        Image</label>
+                                    <label class="block text-sm font-medium text-text-secondary mb-1">{{ __('articles.form.fields.featured_image') }}</label>
                                     <input type="file" name="featured_image" accept="image/*"
                                         class="w-full rounded-md border border-background-secondary px-4 py-2 focus:ring-2 focus:ring-accent-red focus:border-transparent">
-                                    <p class="text-xs text-text-muted mt-1">Maximum file size: 2MB. Supported formats:
-                                        JPEG, PNG, JPG, GIF</p>
+                                    <p class="text-xs text-text-muted mt-1">{{ __('articles.form.fields.featured_help') }}</p>
                                     @error('featured_image')
                                         <p class="text-accent-red text-sm mt-1">{{ $message }}</p>
                                     @enderror
                                 </div>
 
                                 <div>
-                                    <label class="block text-sm font-medium text-text-secondary mb-1">Content</label>
+                                    <label class="block text-sm font-medium text-text-secondary mb-1">{{ __('articles.form.fields.content') }}</label>
                                     <textarea name="content" rows="12"
                                         class="w-full rounded-md border border-background-secondary px-4 py-2 focus:ring-2 focus:ring-accent-red focus:border-transparent"
                                         required>{{ old('content') }}</textarea>
@@ -68,10 +65,9 @@
 
                         <div class="flex items-center justify-end gap-3 pt-4 border-t border-background-secondary">
                             <a href="{{ route('articles.manage') }}"
-                                class="px-4 py-2 rounded-md border border-background-secondary bg-white hover:bg-gray-50">Cancel</a>
+                                class="px-4 py-2 rounded-md border border-background-secondary bg-white hover:bg-gray-50">{{ __('messages.cancel') }}</a>
                             <button type="submit"
-                                class="px-6 py-2 rounded-md bg-accent-red text-white font-semibold hover:bg-opacity-90">Create
-                                Article</button>
+                                class="px-6 py-2 rounded-md bg-accent-red text-white font-semibold hover:bg-opacity-90">{{ __('articles.form.create') }}</button>
                         </div>
                     </div>
                 </form>

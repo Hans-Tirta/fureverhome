@@ -11,28 +11,28 @@
                             d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
                             clip-rule="evenodd" />
                     </svg>
-                    <h1 class="text-2xl font-bold text-white">Payment Successful!</h1>
+                    <h1 class="text-2xl font-bold text-white">{{ __('sponsorships.success.thank_you') }}</h1>
                 </div>
 
                 <!-- Donation Details -->
                 <div class="p-8">
                     <div class="space-y-3 mb-6">
                         <div class="flex justify-between py-2 border-b border-background-secondary">
-                            <span class="text-text-secondary">Transaction ID</span>
+                            <span class="text-text-secondary">{{ __('messages.transaction_id') ?? 'Transaction ID' }}</span>
                             <span class="font-mono text-sm text-text-primary">{{ $sponsorship->transaction_id }}</span>
                         </div>
                         <div class="flex justify-between py-2 border-b border-background-secondary">
-                            <span class="text-text-secondary">Amount</span>
+                            <span class="text-text-secondary">{{ __('messages.amount') ?? 'Amount' }}</span>
                             <span class="font-bold text-xl text-accent-green">
                                 Rp {{ number_format($sponsorship->amount, 0, ',', '.') }}
                             </span>
                         </div>
                         <div class="flex justify-between py-2 border-b border-background-secondary">
-                            <span class="text-text-secondary">Shelter</span>
+                            <span class="text-text-secondary">{{ __('messages.shelter') ?? 'Shelter' }}</span>
                             <span class="font-semibold text-text-primary">{{ $sponsorship->shelter->name }}</span>
                         </div>
                         <div class="flex justify-between py-2 border-b border-background-secondary">
-                            <span class="text-text-secondary">Date</span>
+                            <span class="text-text-secondary">{{ __('messages.date') ?? 'Date' }}</span>
                             <span
                                 class="text-text-primary">{{ $sponsorship->paid_at?->format('d M Y, H:i') ?? now()->format('d M Y, H:i') }}</span>
                         </div>
@@ -48,11 +48,11 @@
                     <div class="flex flex-col sm:flex-row gap-3 pt-6 border-t border-background-secondary">
                         <a href="{{ route('shelters.show', $sponsorship->shelter) }}"
                             class="px-6 py-3 bg-accent-red text-white font-semibold rounded-lg hover:opacity-90 transition text-center">
-                            View Shelter
+                            {{ __('messages.view') }} {{ __('messages.shelters') }}
                         </a>
                         <a href="{{ route('pets.index') }}"
                             class="px-6 py-3 border-2 border-accent-red text-accent-red font-semibold rounded-lg hover:bg-accent-red hover:text-white transition text-center">
-                            Browse Pets
+                            {{ __('sponsorships.success.browse_pets') }}
                         </a>
                     </div>
                 </div>

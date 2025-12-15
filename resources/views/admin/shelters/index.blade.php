@@ -2,9 +2,9 @@
     <div class="min-h-screen bg-background-primary py-8">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-            <div class="mb-8">
-                <h1 class="text-3xl font-bold text-text-primary">Shelter Verification</h1>
-                <p class="text-text-secondary">Review and approve shelter registrations</p>
+                <div class="mb-8">
+                <h1 class="text-3xl font-bold text-text-primary">{{ __('shelters.admin.title') }}</h1>
+                <p class="text-text-secondary">{{ __('shelters.admin.subtitle') }}</p>
             </div>
 
             <!-- Status Filter Tabs -->
@@ -12,11 +12,11 @@
                 <div class="flex flex-wrap gap-2">
                     <a href="{{ route('admin.shelters', ['status' => 'all']) }}"
                         class="px-4 py-2 rounded-md font-medium {{ $status === 'all' ? 'bg-accent-red text-white' : 'bg-white text-text-secondary border border-background-secondary hover:bg-background-primary' }}">
-                        All Shelters
+                        {{ __('shelters.admin.tabs.all') }}
                     </a>
                     <a href="{{ route('admin.shelters', ['status' => 'pending']) }}"
                         class="px-4 py-2 rounded-md font-medium {{ $status === 'pending' ? 'bg-accent-yellow text-white' : 'bg-white text-text-secondary border border-background-secondary hover:bg-background-primary' }}">
-                        Pending
+                        {{ __('shelters.admin.tabs.pending') }}
                         @if ($shelters->total() > 0 && $status === 'pending')
                             <span
                                 class="ml-2 px-2 py-0.5 text-xs bg-white text-accent-yellow rounded-full">{{ $shelters->total() }}</span>
@@ -24,7 +24,7 @@
                     </a>
                     <a href="{{ route('admin.shelters', ['status' => 'verified']) }}"
                         class="px-4 py-2 rounded-md font-medium {{ $status === 'verified' ? 'bg-accent-green text-white' : 'bg-white text-text-secondary border border-background-secondary hover:bg-background-primary' }}">
-                        Verified
+                        {{ __('shelters.admin.tabs.verified') }}
                     </a>
                 </div>
             </div>
@@ -37,15 +37,15 @@
                             <thead class="bg-background-secondary">
                                 <tr>
                                     <th class="px-4 py-3 text-left text-xs font-semibold text-text-secondary uppercase">
-                                        Shelter</th>
+                                        {{ __('shelters.admin.table.shelter') }}</th>
                                     <th class="px-4 py-3 text-left text-xs font-semibold text-text-secondary uppercase">
-                                        Contact</th>
+                                        {{ __('shelters.admin.table.contact') }}</th>
                                     <th class="px-4 py-3 text-left text-xs font-semibold text-text-secondary uppercase">
-                                        Registered</th>
+                                        {{ __('shelters.admin.table.registered') }}</th>
                                     <th class="px-4 py-3 text-left text-xs font-semibold text-text-secondary uppercase">
-                                        Status</th>
+                                        {{ __('shelters.admin.table.status') }}</th>
                                     <th class="px-4 py-3 text-left text-xs font-semibold text-text-secondary uppercase">
-                                        Actions</th>
+                                        {{ __('shelters.admin.table.actions') }}</th>
                                 </tr>
                             </thead>
                             <tbody class="bg-white divide-y divide-background-secondary">
@@ -69,10 +69,10 @@
                                         <td class="px-4 py-3">
                                             @if ($shelter->is_verified)
                                                 <span
-                                                    class="inline-block px-2 py-1 text-xs font-semibold bg-green-100 text-green-700 rounded">Verified</span>
+                                                    class="inline-block px-2 py-1 text-xs font-semibold bg-green-100 text-green-700 rounded">{{ __('shelters.status.verified') }}</span>
                                             @else
                                                 <span
-                                                    class="inline-block px-2 py-1 text-xs font-semibold bg-yellow-100 text-yellow-700 rounded">Pending</span>
+                                                    class="inline-block px-2 py-1 text-xs font-semibold bg-yellow-100 text-yellow-700 rounded">{{ __('shelters.status.pending') }}</span>
                                             @endif
                                         </td>
                                         <td class="px-4 py-3">
@@ -83,11 +83,11 @@
                                                     @method('PATCH')
                                                     <button type="submit"
                                                         class="px-3 py-1.5 text-sm font-semibold rounded-md text-white bg-accent-green hover:bg-opacity-90">
-                                                        Approve
+                                                        {{ __('shelters.admin.approve') }}
                                                     </button>
                                                 </form>
                                             @else
-                                                <span class="text-text-muted text-sm">Verified</span>
+                                                <span class="text-text-muted text-sm">{{ __('shelters.status.verified') }}</span>
                                             @endif
                                         </td>
                                     </tr>
@@ -106,18 +106,18 @@
                             </svg>
                             <h3 class="mt-2 text-lg font-semibold text-text-primary">
                                 @if ($status === 'pending')
-                                    No Pending Shelters
+                                    {{ __('shelters.admin.empty.pending') }}
                                 @elseif($status === 'verified')
-                                    No Verified Shelters
+                                    {{ __('shelters.admin.empty.verified') }}
                                 @else
-                                    No Shelters Found
+                                    {{ __('shelters.admin.empty.none') }}
                                 @endif
                             </h3>
                             <p class="mt-1 text-text-secondary">
                                 @if ($status === 'pending')
-                                    All shelter registrations have been processed.
+                                    {{ __('shelters.admin.empty.pending_desc') }}
                                 @else
-                                    Waiting for new shelter registrations.
+                                    {{ __('shelters.admin.empty.default_desc') }}
                                 @endif
                             </p>
                         </div>

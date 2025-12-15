@@ -17,6 +17,9 @@ return [
     'about' => [
         'title' => 'Connecting Hearts, Creating Forever Homes',
         'description' => 'FureverHome is a dedicated platform that bridges the gap between loving pets in need and caring families ready to adopt. We work with verified shelters across the region to ensure every pet finds their perfect match.',
+        'images' => [
+            'happy_alt' => 'Happy pets with their families',
+        ],
         'stats' => [
             'successful_adoptions' => 'Successful Adoptions',
             'trusted_shelters' => 'Trusted Shelters',

@@ -40,6 +40,9 @@ return [
             'adopt' => [
                 'title' => '3. Adopsi & Sayangi',
                 'description' => 'Selesaikan proses adopsi dan sambut anggota keluarga baru Anda',
+                'images' => [
+                    'happy_alt' => 'Hewan peliharaan bahagia bersama keluarga mereka',
+                ],
                 'alt' => 'Adopsi dan sayangi',
             ],
         ],

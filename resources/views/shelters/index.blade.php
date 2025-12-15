@@ -4,9 +4,9 @@
 
             {{-- Page Header --}}
             <div class="mb-8">
-                <h1 class="text-4xl font-bold text-text-primary mb-2">Browse Animal Shelters</h1>
+                <h1 class="text-4xl font-bold text-text-primary mb-2">{{ __('shelters.index.title') }}</h1>
                 <p class="text-text-secondary">
-                    Discover verified shelters and support their mission to help animals in need
+                    {{ __('shelters.index.subtitle') }}
                 </p>
             </div>
 
@@ -17,22 +17,22 @@
                     {{-- Search Bar --}}
                     <div>
                         <label for="search" class="block text-sm font-medium text-text-primary mb-2">
-                            Search by name or location
+                            {{ __('shelters.index.search_label') }}
                         </label>
                         <div class="flex gap-3">
                             <input type="text" name="search" id="search" value="{{ request('search') }}"
-                                placeholder="Enter shelter name or location..."
+                                placeholder="{{ __('shelters.index.search_placeholder') }}"
                                 class="flex-1 rounded-md border-background-secondary focus:border-accent-red focus:ring focus:ring-accent-red focus:ring-opacity-50">
 
                             <button type="submit"
                                 class="bg-accent-red hover:bg-opacity-90 text-white font-semibold py-2 px-8 rounded-md transition shadow-sm">
-                                Search
+                                {{ __('shelters.index.search_button') }}
                             </button>
 
                             @if (request('search'))
                                 <a href="{{ route('shelters.index') }}"
                                     class="bg-text-secondary hover:bg-opacity-90 text-white font-semibold py-2 px-6 rounded-md transition shadow-sm">
-                                    Clear
+                                    {{ __('shelters.index.clear') }}
                                 </a>
                             @endif
                         </div>
@@ -44,9 +44,9 @@
             {{-- Results Count --}}
             <div class="mb-6">
                 <p class="text-text-secondary">
-                    Showing <span class="font-semibold text-text-primary">{{ $shelters->total() }}</span> shelter(s)
+                    {{ __('shelters.index.showing', ['count' => $shelters->total()]) }}
                     @if (request('search'))
-                        matching "{{ request('search') }}"
+                        {{ __('shelters.index.matching', ['term' => request('search')]) }}
                     @endif
                 </p>
             </div>
@@ -76,7 +76,7 @@
                                         </p>
                                     @else
                                         <p class="text-sm text-text-muted italic h-20 flex items-center">
-                                            No description available
+                                            {{ __('shelters.index.no_description') }}
                                         </p>
                                     @endif
                                 </div>
@@ -102,7 +102,7 @@
                                         </span>
                                         <span
                                             class="px-2 py-1 bg-background-primary text-text-primary text-xs font-medium rounded">
-                                            Available
+                                            {{ __('shelters.index.available') }}
                                         </span>
                                     </div>
                                 </div>
@@ -110,7 +110,7 @@
                                 {{-- Button pushed to bottom --}}
                                 <a href="{{ route('shelters.show', $shelter) }}"
                                     class="block w-full text-center bg-accent-red hover:bg-opacity-90 text-white font-semibold py-2 rounded-md transition mt-auto">
-                                    View Details
+                                    {{ __('shelters.index.view_details') }}
                                 </a>
                             </div>
                         </div>
@@ -132,25 +132,24 @@
                                     d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
                             </svg>
                         </div>
-                        <h3 class="text-2xl font-bold text-text-primary mb-3">No Shelters Found</h3>
+                        <h3 class="text-2xl font-bold text-text-primary mb-3">{{ __('shelters.index.no_shelters_found') }}</h3>
                         <p class="text-text-secondary mb-8 leading-relaxed">
                             @if (request('search'))
-                                We couldn't find any shelters matching "{{ request('search') }}". Try a different
-                                search term.
+                                {{ __('shelters.index.no_shelters_description_search', ['term' => request('search')]) }}
                             @else
-                                There are no registered shelters at the moment.
+                                {{ __('shelters.index.no_shelters_description_none') }}
                             @endif
                         </p>
                         <div class="flex flex-col sm:flex-row gap-3 justify-center">
                             @if (request('search'))
                                 <a href="{{ route('shelters.index') }}"
                                     class="inline-block bg-accent-red hover:bg-opacity-90 text-white font-semibold py-3 px-8 rounded-md transition shadow-sm">
-                                    View All Shelters
+                                    {{ __('shelters.index.view_all') }}
                                 </a>
                             @endif
                             <a href="{{ route('pets.index') }}"
                                 class="inline-block bg-white hover:bg-background-primary text-text-primary font-semibold py-3 px-8 rounded-md transition border border-background-secondary">
-                                Browse Pets Instead
+                                {{ __('shelters.index.browse_pets_instead') }}
                             </a>
                         </div>
                     </div>

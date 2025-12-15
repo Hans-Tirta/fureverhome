@@ -4,7 +4,7 @@
 
         <!-- Account Information -->
         <div class="mb-6">
-            <h3 class="text-lg font-medium text-gray-900 mb-4">Account Information</h3>
+            <h3 class="text-lg font-medium text-gray-900 mb-4">{{ __('auth.register.account_title') }}</h3>
 
             <!-- Name -->
             <div>
@@ -41,7 +41,7 @@
 
         <!-- Shelter Information -->
         <div class="mb-6 pt-6 border-t border-gray-200">
-            <h3 class="text-lg font-medium text-gray-900 mb-4">Shelter Information</h3>
+            <h3 class="text-lg font-medium text-gray-900 mb-4">{{ __('auth.register.shelter_title') }}</h3>
 
             <!-- Shelter Name -->
             <div>
@@ -73,7 +73,7 @@
                 <x-input-label for="shelter_email" :value="__('Shelter Contact Email')" />
                 <x-text-input id="shelter_email" class="block mt-1 w-full" type="email" name="shelter_email"
                     :value="old('shelter_email')" required />
-                <p class="text-xs text-gray-500 mt-1">This will be displayed publicly for adoption inquiries.</p>
+                <p class="text-xs text-gray-500 mt-1">{{ __('profile.shelter.contact_note') }}</p>
                 <x-input-error :messages="$errors->get('shelter_email')" class="mt-2" />
             </div>
 
@@ -82,7 +82,7 @@
                 <x-input-label for="description" :value="__('Description (Optional)')" />
                 <textarea id="description" name="description" rows="3"
                     class="block mt-1 w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm">{{ old('description') }}</textarea>
-                <p class="text-xs text-gray-500 mt-1">Brief description of your shelter and mission.</p>
+                <p class="text-xs text-gray-500 mt-1">{{ __('profile.shelter.description_help') }}</p>
                 <x-input-error :messages="$errors->get('description')" class="mt-2" />
             </div>
 
@@ -98,8 +98,7 @@
         <!-- Verification Notice -->
         <div class="mb-4 p-4 bg-blue-50 border border-blue-200 rounded-md">
             <p class="text-sm text-blue-800">
-                <strong>Note:</strong> Your shelter registration will be reviewed by our admin team. You'll be able to
-                post pets once your account is verified.
+                <strong>{{ __('auth.register.note_title') }}</strong> {{ __('auth.register.note_message') }}
             </p>
         </div>
 

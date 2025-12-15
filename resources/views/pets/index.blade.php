@@ -6,13 +6,13 @@
             <div class="mb-8">
                 <h1 class="text-4xl font-bold text-text-primary mb-2">
                     @if (request('category'))
-                        {{ $categoryName ?? 'Browse Pets' }}
+                        {{ $categoryName ?? __('pets.index.title_all') }}
                     @else
-                        Browse All Pets
+                        {{ __('pets.index.title_all') }}
                     @endif
                 </h1>
                 <p class="text-text-secondary">
-                    Find your perfect companion from our trusted shelters
+                    {{ __('pets.index.subtitle') }}
                 </p>
             </div>
 
@@ -23,10 +23,10 @@
                     {{-- Search Bar --}}
                     <div>
                         <label for="search" class="block text-sm font-medium text-text-primary mb-2">
-                            Search by name or breed
+                            {{ __('pets.index.search_label') }}
                         </label>
                         <input type="text" name="search" id="search" value="{{ request('search') }}"
-                            placeholder="Enter pet name or breed..."
+                            placeholder="{{ __('pets.index.search_placeholder') }}"
                             class="w-full rounded-md border-background-secondary focus:border-accent-red focus:ring focus:ring-accent-red focus:ring-opacity-50">
                     </div>
 
@@ -36,16 +36,16 @@
                         {{-- Category Filter --}}
                         <div>
                             <label for="category" class="block text-sm font-medium text-text-primary mb-2">
-                                Category
+                                {{ __('pets.index.filter.category') }}
                             </label>
                             <select name="category" id="category"
                                 class="w-full rounded-md border-background-secondary focus:border-accent-red focus:ring focus:ring-accent-red focus:ring-opacity-50">
-                                <option value="">All Categories</option>
+                                <option value="">{{ __('pets.index.filter.all_categories') }}</option>
                                 @foreach (\App\Models\Category::whereNull('parent_id')->get() as $cat)
                                     <optgroup label="{{ $cat->name }}">
                                         <option value="{{ $cat->slug }}"
                                             {{ request('category') == $cat->slug ? 'selected' : '' }}>
-                                            All {{ $cat->name }}
+                                            {{ __('pets.index.filter.all_of', ['category' => $cat->name]) }}
                                         </option>
                                         @foreach ($cat->children as $subCat)
                                             <option value="{{ $subCat->slug }}"
@@ -61,7 +61,7 @@
                         {{-- Size Filter --}}
                         <div>
                             <label for="size" class="block text-sm font-medium text-text-primary mb-2">
-                                Size
+                                {{ __('pets.index.filter.size') }}
                             </label>
                             <select name="size" id="size"
                                 class="w-full rounded-md border-background-secondary focus:border-accent-red focus:ring focus:ring-accent-red focus:ring-opacity-50">
@@ -78,7 +78,7 @@
                         {{-- Age Filter --}}
                         <div>
                             <label for="age" class="block text-sm font-medium text-text-primary mb-2">
-                                Age Range
+                                {{ __('pets.index.filter.age') }}
                             </label>
                             <select name="age" id="age"
                                 class="w-full rounded-md border-background-secondary focus:border-accent-red focus:ring focus:ring-accent-red focus:ring-opacity-50">
@@ -95,7 +95,7 @@
                         {{-- Gender Filter --}}
                         <div>
                             <label for="gender" class="block text-sm font-medium text-text-primary mb-2">
-                                Gender
+                                {{ __('pets.index.filter.gender') }}
                             </label>
                             <select name="gender" id="gender"
                                 class="w-full rounded-md border-background-secondary focus:border-accent-red focus:ring focus:ring-accent-red focus:ring-opacity-50">
@@ -113,11 +113,11 @@
                     <div class="flex gap-3">
                         <button type="submit"
                             class="bg-accent-red hover:bg-opacity-90 text-white font-semibold py-2 px-6 rounded-md transition shadow-sm">
-                            Apply Filters
+                            {{ __('pets.index.apply_filters') }}
                         </button>
                         <a href="{{ route('pets.index') }}"
                             class="bg-text-secondary hover:bg-opacity-90 text-white font-semibold py-2 px-6 rounded-md transition shadow-sm">
-                            Clear All
+                            {{ __('pets.index.clear_all') }}
                         </a>
                     </div>
                 </form>
@@ -126,9 +126,9 @@
             {{-- Results Count --}}
             <div class="mb-6">
                 <p class="text-text-secondary">
-                    Showing <span class="font-semibold text-text-primary">{{ $pets->total() }}</span> pets
+                    {{ __('pets.index.showing', ['count' => $pets->total()]) }}
                     @if (request()->hasAny(['category', 'search', 'size', 'age', 'gender']))
-                        from {{ \App\Models\Pet::where('is_available', true)->count() }} total available pets
+                        {{ __('pets.index.from_total', ['total' => \App\Models\Pet::where('is_available', true)->count()]) }}
                     @endif
                 </p>
             </div>
@@ -160,7 +160,7 @@
                                 @else
                                     <div
                                         class="w-full aspect-square bg-background-secondary flex items-center justify-center">
-                                        <span class="text-text-muted">No image</span>
+                                        <span class="text-text-muted">{{ __('pets.index.no_image') }}</span>
                                     </div>
                                 @endif
 
@@ -176,7 +176,7 @@
                                     <img src="{{ $imageUrl }}" alt="{{ $pet->name }}" class="w-full h-48 object-cover">
                                 @else
                                     <div class="w-full h-48 bg-background-secondary flex items-center justify-center">
-                                        <span class="text-text-muted">No image</span>
+                                        <span class="text-text-muted">{{ __('pets.index.no_image') }}</span>
                                     </div>
                                 @endif
                                 -- --}}
@@ -217,9 +217,9 @@
                                     @endif
                                 </div>
 
-                                <a href="{{ route('pets.show', $pet) }}"
+                                        <a href="{{ route('pets.show', $pet) }}"
                                     class="block w-full text-center bg-accent-red hover:bg-opacity-90 text-white font-semibold py-2 rounded-md transition">
-                                    View Details
+                                    {{ __('pets.index.view_details') }}
                                 </a>
                             </div>
                         </div>
@@ -241,19 +241,18 @@
                                     d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                             </svg>
                         </div>
-                        <h3 class="text-2xl font-bold text-text-primary mb-3">No Pets Found</h3>
+                        <h3 class="text-2xl font-bold text-text-primary mb-3">{{ __('pets.index.no_pets_found') }}</h3>
                         <p class="text-text-secondary mb-8 leading-relaxed">
-                            We couldn't find any pets matching your search criteria. Try adjusting your filters or
-                            browse all available pets.
+                            {{ __('pets.index.no_pets_description') }}
                         </p>
                         <div class="flex flex-col sm:flex-row gap-3 justify-center">
                             <a href="{{ route('pets.index') }}"
                                 class="inline-block bg-accent-red hover:bg-opacity-90 text-white font-semibold py-3 px-8 rounded-md transition shadow-sm">
-                                View All Pets
+                                {{ __('pets.index.view_all') }}
                             </a>
-                            <button onclick="window.history.back()"
+                                <button onclick="window.history.back()"
                                 class="inline-block bg-white hover:bg-background-primary text-text-primary font-semibold py-3 px-8 rounded-md transition border border-background-secondary">
-                                Go Back
+                                {{ __('pets.index.go_back') }}
                             </button>
                         </div>
                     </div>

@@ -64,7 +64,7 @@
                 <!-- Image -->
                 <div class="relative">
                     <div class="aspect-[4/3] rounded-lg shadow-lg overflow-hidden">
-                        <img src="{{ asset('images/about2.webp') }}" alt="Happy pets with their families"
+                            <img src="{{ asset('images/about2.webp') }}" alt="{{ __('home.about.images.happy_alt') }}"
                             class="w-full h-full object-cover">
                     </div>
                 </div>

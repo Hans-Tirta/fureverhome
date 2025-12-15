@@ -32,4 +32,15 @@ return [
     'register_as_shelter' => 'Register as Shelter',
     'register_adopter_account' => 'Register Adopter Account',
     'register_shelter_account' => 'Register Shelter Account',
+    'verify_email' => [
+        'message' => "Thanks for signing up! Before getting started, could you verify your email address by clicking on the link we just emailed to you? If you didn't receive the email, we will gladly send you another.",
+        'link_sent' => 'A new verification link has been sent to the email address you provided during registration.',
+        'resend' => 'Resend Verification Email',
+    ],
+    'register' => [
+        'account_title' => 'Account Information',
+        'shelter_title' => 'Shelter Information',
+        'note_title' => 'Note:',
+        'note_message' => "Your shelter registration will be reviewed by our admin team. You'll be able to post pets once your account is verified.",
+    ],
 ];
