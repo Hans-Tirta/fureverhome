@@ -48,7 +48,7 @@
                                                     d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z"
                                                     clip-rule="evenodd" />
                                             </svg>
-                                            Sponsor This Shelter
+                                            {{ __('shelters.show.sponsor') }}
                                         </a>
                                     @endif
                                 @endauth
@@ -67,7 +67,8 @@
                                     d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                             </svg>
                             <div>
-                                <p class="text-sm font-medium text-gray-500">{{ __('shelters.show.labels.address') }}</p>
+                                <p class="text-sm font-medium text-gray-500">{{ __('shelters.show.labels.address') }}
+                                </p>
                                 <p class="text-text-primary">{{ $shelter->address }}</p>
                             </div>
                         </div>
@@ -80,7 +81,8 @@
                                     d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                             </svg>
                             <div>
-                                <p class="text-sm font-medium text-gray-500">{{ __('shelters.show.labels.contact') }}</p>
+                                <p class="text-sm font-medium text-gray-500">{{ __('shelters.show.labels.contact') }}
+                                </p>
                                 <p class="text-text-primary">{{ $shelter->email }}</p>
                                 <p class="text-text-primary">{{ $shelter->phone }}</p>
                             </div>
@@ -95,7 +97,8 @@
                                         d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
                                 </svg>
                                 <div>
-                                    <p class="text-sm font-medium text-gray-500">{{ __('shelters.show.labels.website') }}</p>
+                                    <p class="text-sm font-medium text-gray-500">
+                                        {{ __('shelters.show.labels.website') }}</p>
                                     <a href="{{ $shelter->website }}" target="_blank"
                                         class="text-accent-blue hover:underline">
                                         {{ parse_url($shelter->website, PHP_URL_HOST) }}
@@ -110,7 +113,8 @@
             {{-- Pets Section --}}
             <div class="bg-white rounded-lg shadow-md overflow-hidden">
                 <div class="p-6 border-b border-gray-200">
-                    <h2 class="text-2xl font-bold text-text-primary">{{ __('shelters.show.available_pets', ['count' => $shelter->pets->count()]) }}</h2>
+                    <h2 class="text-2xl font-bold text-text-primary">
+                        {{ __('shelters.show.available_pets', ['count' => $shelter->pets->count()]) }}</h2>
                 </div>
 
                 @if ($shelter->pets->count() > 0)
