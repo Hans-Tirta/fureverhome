@@ -41,13 +41,13 @@
                             <select name="category" id="category"
                                 class="w-full rounded-md border-background-secondary focus:border-accent-red focus:ring focus:ring-accent-red focus:ring-opacity-50">
                                 <option value="">{{ __('pets.index.filter.all_categories') }}</option>
-                                @foreach (\App\Models\Category::whereNull('parent_id')->get() as $cat)
+                                @foreach (\App\Models\Category::forPets()->whereNull('parent_id')->get() as $cat)
                                     <optgroup label="{{ $cat->name }}">
                                         <option value="{{ $cat->slug }}"
                                             {{ request('category') == $cat->slug ? 'selected' : '' }}>
                                             {{ __('pets.index.filter.all_of', ['category' => $cat->name]) }}
                                         </option>
-                                        @foreach ($cat->children as $subCat)
+                                        @foreach ($cat->children->where('type', 'pet') as $subCat)
                                             <option value="{{ $subCat->slug }}"
                                                 {{ request('category') == $subCat->slug ? 'selected' : '' }}>
                                                 {{ $subCat->name }}

@@ -17,7 +17,19 @@ class Category extends Model
         'slug',
         'description',
         'icon',
+        'type', // Added type
     ];
+
+    // Scopes
+    public function scopeForPets($query)
+    {
+        return $query->where('type', 'pet');
+    }
+
+    public function scopeForArticles($query)
+    {
+        return $query->where('type', 'article');
+    }
 
     // Category has many Pets
     public function pets(): HasMany

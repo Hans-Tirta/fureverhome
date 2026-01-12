@@ -13,12 +13,13 @@ class CategorySeeder extends Seeder
      */
     public function run(): void
     {
-        // Main Categories
+        // Main Categories (PETS)
         $dogs = Category::create([
             'name' => 'Dogs',
             'slug' => 'dogs',
             'description' => 'Man\'s best friend - loyal, loving companions',
             'icon' => '🐶',
+            'type' => 'pet',
         ]);
 
         $cats = Category::create([
@@ -26,6 +27,7 @@ class CategorySeeder extends Seeder
             'slug' => 'cats',
             'description' => 'Independent and affectionate feline friends',
             'icon' => '🐱',
+            'type' => 'pet',
         ]);
 
         $other = Category::create([
@@ -33,15 +35,17 @@ class CategorySeeder extends Seeder
             'slug' => 'other',
             'description' => 'Other unique and special pets',
             'icon' => '🐰',
+            'type' => 'pet',
         ]);
 
-        // Subcategories under "Other"
+        // Subcategories under "Other" (PETS)
         Category::create([
             'parent_id' => $other->id,
             'name' => 'Birds',
             'slug' => 'birds',
             'description' => 'Colorful and cheerful feathered companions',
             'icon' => '🐦',
+            'type' => 'pet',
         ]);
 
         Category::create([
@@ -50,6 +54,7 @@ class CategorySeeder extends Seeder
             'slug' => 'rabbits',
             'description' => 'Gentle and social hopping friends',
             'icon' => '🐰',
+            'type' => 'pet',
         ]);
 
         Category::create([
@@ -58,6 +63,7 @@ class CategorySeeder extends Seeder
             'slug' => 'small-pets',
             'description' => 'Hamsters, guinea pigs, and other small pets',
             'icon' => '🐹',
+            'type' => 'pet',
         ]);
 
         Category::create([
@@ -66,15 +72,17 @@ class CategorySeeder extends Seeder
             'slug' => 'reptiles-aquatics',
             'description' => 'Reptiles, amphibians, and fish',
             'icon' => '🐍',
+            'type' => 'pet',
         ]);
 
-        // Article Categories (as subcategories for article management)
+        // Article Categories (ARTICLES)
         Category::create([
             'parent_id' => $dogs->id,
             'name' => 'Dogs',
             'slug' => 'dogs-articles',
             'description' => 'Articles about dog care and training',
             'icon' => '🐶',
+            'type' => 'article',
         ]);
 
         Category::create([
@@ -83,6 +91,7 @@ class CategorySeeder extends Seeder
             'slug' => 'cats-articles',
             'description' => 'Articles about cat care and behavior',
             'icon' => '🐱',
+            'type' => 'article',
         ]);
 
         Category::create([
@@ -91,6 +100,7 @@ class CategorySeeder extends Seeder
             'slug' => 'other-animal-articles',
             'description' => 'Articles about other pets and animals',
             'icon' => '🐰',
+            'type' => 'article',
         ]);
 
         Category::create([
@@ -99,6 +109,7 @@ class CategorySeeder extends Seeder
             'slug' => 'general-articles',
             'description' => 'General pet care articles',
             'icon' => '📰',
+            'type' => 'article',
         ]);
     }
 }
