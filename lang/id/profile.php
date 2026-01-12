@@ -20,4 +20,10 @@ return [
     'update' => [
         'description' => 'Perbarui informasi profil akun dan alamat email Anda.',
     ],
+    'password' => [
+        'title' => 'Perbarui Kata Sandi',
+        'description' => 'Pastikan akun Anda menggunakan kata sandi acak yang panjang agar tetap aman.',
+        'current' => 'Kata Sandi Saat Ini',
+        'new' => 'Kata Sandi Baru',
+    ],
 ];

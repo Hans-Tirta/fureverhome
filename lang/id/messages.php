@@ -52,6 +52,7 @@ return [
     'submit' => 'Kirim',
     'status' => 'Status',
     'message' => 'Pesan',
+    'saved' => 'Tersimpan.',
     'close' => 'Tutup',
 
     // Status

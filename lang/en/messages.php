@@ -52,6 +52,7 @@ return [
     'submit' => 'Submit',
     'status' => 'Status',
     'message' => 'Message',
+    'saved' => 'Saved.',
     'close' => 'Close',
 
     // Status
