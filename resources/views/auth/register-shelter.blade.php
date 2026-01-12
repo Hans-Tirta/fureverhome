@@ -8,7 +8,7 @@
 
             <!-- Name -->
             <div>
-                <x-input-label for="name" :value="__('Your Name')" />
+                <x-input-label for="name" :value="__('auth.your_name')" />
                 <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')"
                     required autofocus autocomplete="name" />
                 <x-input-error :messages="$errors->get('name')" class="mt-2" />
@@ -16,7 +16,7 @@
 
             <!-- Email Address -->
             <div class="mt-4">
-                <x-input-label for="email" :value="__('Email')" />
+                <x-input-label for="email" :value="__('auth.email')" />
                 <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')"
                     required autocomplete="username" />
                 <x-input-error :messages="$errors->get('email')" class="mt-2" />
@@ -24,7 +24,7 @@
 
             <!-- Password -->
             <div class="mt-4">
-                <x-input-label for="password" :value="__('Password')" />
+                <x-input-label for="password" :value="__('auth.password_label')" />
                 <x-text-input id="password" class="block mt-1 w-full" type="password" name="password" required
                     autocomplete="new-password" />
                 <x-input-error :messages="$errors->get('password')" class="mt-2" />
@@ -32,7 +32,7 @@
 
             <!-- Confirm Password -->
             <div class="mt-4">
-                <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
+                <x-input-label for="password_confirmation" :value="__('auth.confirm_password')" />
                 <x-text-input id="password_confirmation" class="block mt-1 w-full" type="password"
                     name="password_confirmation" required autocomplete="new-password" />
                 <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
@@ -45,7 +45,7 @@
 
             <!-- Shelter Name -->
             <div>
-                <x-input-label for="shelter_name" :value="__('Shelter Name')" />
+                <x-input-label for="shelter_name" :value="__('auth.shelter_name')" />
                 <x-text-input id="shelter_name" class="block mt-1 w-full" type="text" name="shelter_name"
                     :value="old('shelter_name')" required />
                 <x-input-error :messages="$errors->get('shelter_name')" class="mt-2" />
@@ -53,7 +53,7 @@
 
             <!-- Address -->
             <div class="mt-4">
-                <x-input-label for="address" :value="__('Address')" />
+                <x-input-label for="address" :value="__('auth.address')" />
                 <textarea id="address" name="address" rows="2"
                     class="block mt-1 w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm"
                     required>{{ old('address') }}</textarea>
@@ -62,7 +62,7 @@
 
             <!-- Phone -->
             <div class="mt-4">
-                <x-input-label for="phone" :value="__('Phone Number')" />
+                <x-input-label for="phone" :value="__('auth.phone_number')" />
                 <x-text-input id="phone" class="block mt-1 w-full" type="text" name="phone" :value="old('phone')"
                     required />
                 <x-input-error :messages="$errors->get('phone')" class="mt-2" />
@@ -70,7 +70,7 @@
 
             <!-- Shelter Email -->
             <div class="mt-4">
-                <x-input-label for="shelter_email" :value="__('Shelter Contact Email')" />
+                <x-input-label for="shelter_email" :value="__('auth.shelter_contact_email')" />
                 <x-text-input id="shelter_email" class="block mt-1 w-full" type="email" name="shelter_email"
                     :value="old('shelter_email')" required />
                 <p class="text-xs text-gray-500 mt-1">{{ __('profile.shelter.contact_note') }}</p>
@@ -79,7 +79,7 @@
 
             <!-- Description -->
             <div class="mt-4">
-                <x-input-label for="description" :value="__('Description (Optional)')" />
+                <x-input-label for="description" :value="__('auth.description_optional')" />
                 <textarea id="description" name="description" rows="3"
                     class="block mt-1 w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm">{{ old('description') }}</textarea>
                 <p class="text-xs text-gray-500 mt-1">{{ __('profile.shelter.description_help') }}</p>
@@ -88,7 +88,7 @@
 
             <!-- Website -->
             <div class="mt-4">
-                <x-input-label for="website" :value="__('Website (Optional)')" />
+                <x-input-label for="website" :value="__('auth.website_optional')" />
                 <x-text-input id="website" class="block mt-1 w-full" type="url" name="website" :value="old('website')"
                     placeholder="https://" />
                 <x-input-error :messages="$errors->get('website')" class="mt-2" />
@@ -105,16 +105,16 @@
         <div class="flex items-center justify-between mt-6">
             <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                 href="{{ route('login') }}">
-                {{ __('Already registered?') }}
+                {{ __('auth.already_registered') }}
             </a>
 
             <div class="flex items-center gap-4">
                 <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                     href="{{ route('register') }}">
-                    {{ __('Register as Adopter') }}
+                    {{ __('auth.register_as_adopter') }}
                 </a>
                 <x-primary-button>
-                    {{ __('Register') }}
+                    {{ __('auth.register_button') }}
                 </x-primary-button>
             </div>
         </div>

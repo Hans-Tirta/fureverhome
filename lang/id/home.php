@@ -17,6 +17,9 @@ return [
     'about' => [
         'title' => 'Menghubungkan Hati, Menciptakan Rumah Selamanya',
         'description' => 'FureverHome adalah platform khusus yang menjembatani kesenjangan antara hewan peliharaan yang membutuhkan kasih sayang dengan keluarga yang siap mengadopsi. Kami bekerja sama dengan shelter terverifikasi di seluruh wilayah untuk memastikan setiap hewan menemukan pasangan yang sempurna.',
+        'images' => [
+            'happy_alt' => 'Hewan peliharaan bahagia bersama keluarga mereka',
+        ],
         'stats' => [
             'successful_adoptions' => 'Adopsi Berhasil',
             'trusted_shelters' => 'Shelter Terpercaya',
@@ -40,9 +43,6 @@ return [
             'adopt' => [
                 'title' => '3. Adopsi & Sayangi',
                 'description' => 'Selesaikan proses adopsi dan sambut anggota keluarga baru Anda',
-                'images' => [
-                    'happy_alt' => 'Hewan peliharaan bahagia bersama keluarga mereka',
-                ],
                 'alt' => 'Adopsi dan sayangi',
             ],
         ],
