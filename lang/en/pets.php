@@ -14,6 +14,11 @@ return [
             'all_sizes' => 'All Sizes',
             'age' => 'Age Range',
             'all_ages' => 'All Ages',
+            'age_options' => [
+                'young' => 'Young (up to around 2 years)',
+                'adult' => 'Adult (about 2-7 years)',
+                'senior' => 'Senior (about 7+ years)',
+            ],
             'gender' => 'Gender',
             'all_genders' => 'All Genders',
         ],

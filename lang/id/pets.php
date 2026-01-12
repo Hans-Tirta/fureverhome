@@ -14,6 +14,11 @@ return [
             'all_sizes' => 'Semua Ukuran',
             'age' => 'Rentang Usia',
             'all_ages' => 'Semua Usia',
+            'age_options' => [
+                'young' => 'Muda (hingga sekitar 2 tahun)',
+                'adult' => 'Dewasa (sekitar 2-7 tahun)',
+                'senior' => 'Lansia (sekitar 7+ tahun)',
+            ],
             'gender' => 'Jenis Kelamin',
             'all_genders' => 'Semua Jenis Kelamin',
         ],

@@ -65,12 +65,15 @@
                             </label>
                             <select name="size" id="size"
                                 class="w-full rounded-md border-background-secondary focus:border-accent-red focus:ring focus:ring-accent-red focus:ring-opacity-50">
-                                <option value="">All Sizes</option>
-                                <option value="small" {{ request('size') == 'small' ? 'selected' : '' }}>Small
+                                <option value="">{{ __('pets.index.filter.all_sizes') }}</option>
+                                <option value="small" {{ request('size') == 'small' ? 'selected' : '' }}>
+                                    {{ __('pets.form.fields.small') }}
                                 </option>
-                                <option value="medium" {{ request('size') == 'medium' ? 'selected' : '' }}>Medium
+                                <option value="medium" {{ request('size') == 'medium' ? 'selected' : '' }}>
+                                    {{ __('pets.form.fields.medium') }}
                                 </option>
-                                <option value="large" {{ request('size') == 'large' ? 'selected' : '' }}>Large
+                                <option value="large" {{ request('size') == 'large' ? 'selected' : '' }}>
+                                    {{ __('pets.form.fields.large') }}
                                 </option>
                             </select>
                         </div>
@@ -83,12 +86,12 @@
                             <select name="age" id="age"
                                 class="w-full rounded-md border-background-secondary focus:border-accent-red focus:ring focus:ring-accent-red focus:ring-opacity-50">
                                 <option value="">All Ages</option>
-                                <option value="young" {{ request('age') == 'young' ? 'selected' : '' }}>Young (up to
-                                    around 2 years)</option>
-                                <option value="adult" {{ request('age') == 'adult' ? 'selected' : '' }}>Adult (about
-                                    2-7 years)</option>
-                                <option value="senior" {{ request('age') == 'senior' ? 'selected' : '' }}>Senior (about
-                                    7+ years)</option>
+                                <option value="young" {{ request('age') == 'young' ? 'selected' : '' }}>
+                                    {{ __('pets.index.filter.age_options.young') }}</option>
+                                <option value="adult" {{ request('age') == 'adult' ? 'selected' : '' }}>
+                                    {{ __('pets.index.filter.age_options.adult') }}</option>
+                                <option value="senior" {{ request('age') == 'senior' ? 'selected' : '' }}>
+                                    {{ __('pets.index.filter.age_options.senior') }}</option>
                             </select>
                         </div>
 
@@ -217,7 +220,7 @@
                                     @endif
                                 </div>
 
-                                        <a href="{{ route('pets.show', $pet) }}"
+                                <a href="{{ route('pets.show', $pet) }}"
                                     class="block w-full text-center bg-accent-red hover:bg-opacity-90 text-white font-semibold py-2 rounded-md transition">
                                     {{ __('pets.index.view_details') }}
                                 </a>
@@ -250,7 +253,7 @@
                                 class="inline-block bg-accent-red hover:bg-opacity-90 text-white font-semibold py-3 px-8 rounded-md transition shadow-sm">
                                 {{ __('pets.index.view_all') }}
                             </a>
-                                <button onclick="window.history.back()"
+                            <button onclick="window.history.back()"
                                 class="inline-block bg-white hover:bg-background-primary text-text-primary font-semibold py-3 px-8 rounded-md transition border border-background-secondary">
                                 {{ __('pets.index.go_back') }}
                             </button>
