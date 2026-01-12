@@ -18,27 +18,28 @@
                 <div class="p-8">
                     <div class="space-y-3 mb-6">
                         <div class="flex justify-between py-2 border-b border-background-secondary">
-                            <span class="text-text-secondary">{{ __('messages.transaction_id') ?? 'Transaction ID' }}</span>
+                            <span class="text-text-secondary">{{ __('messages.transaction_id') }}</span>
                             <span class="font-mono text-sm text-text-primary">{{ $sponsorship->transaction_id }}</span>
                         </div>
                         <div class="flex justify-between py-2 border-b border-background-secondary">
-                            <span class="text-text-secondary">{{ __('messages.amount') ?? 'Amount' }}</span>
+                            <span class="text-text-secondary">{{ __('messages.amount') }}</span>
                             <span class="font-bold text-xl text-accent-green">
                                 Rp {{ number_format($sponsorship->amount, 0, ',', '.') }}
                             </span>
                         </div>
                         <div class="flex justify-between py-2 border-b border-background-secondary">
-                            <span class="text-text-secondary">{{ __('messages.shelter') ?? 'Shelter' }}</span>
+                            <span class="text-text-secondary">{{ __('messages.shelter') }}</span>
                             <span class="font-semibold text-text-primary">{{ $sponsorship->shelter->name }}</span>
                         </div>
                         <div class="flex justify-between py-2 border-b border-background-secondary">
-                            <span class="text-text-secondary">{{ __('messages.date') ?? 'Date' }}</span>
+                            <span class="text-text-secondary">{{ __('messages.date') }}</span>
                             <span
                                 class="text-text-primary">{{ $sponsorship->paid_at?->format('d M Y, H:i') ?? now()->format('d M Y, H:i') }}</span>
                         </div>
                         @if ($sponsorship->message)
                             <div class="py-2">
-                                <span class="text-text-secondary block mb-1">Message</span>
+                                <span
+                                    class="text-text-secondary block mb-1">{{ __('messages.message') ?? 'Message' }}</span>
                                 <p class="text-text-primary italic">"{{ $sponsorship->message }}"</p>
                             </div>
                         @endif

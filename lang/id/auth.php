@@ -17,7 +17,7 @@ return [
 
     // Custom labels
     'login' => 'Masuk',
-    'register' => 'Daftar',
+    'register_button' => 'Daftar',
     'email' => 'Email',
     'password_label' => 'Kata Sandi',
     'remember_me' => 'Ingat saya',
@@ -26,6 +26,18 @@ return [
     'confirm_password' => 'Konfirmasi Kata Sandi',
     'already_registered' => 'Sudah terdaftar?',
     'logout' => 'Keluar',
+    'confirm' => 'Konfirmasi',
+    'reset_password' => 'Atur Ulang Kata Sandi',
+    'email_password_reset_link' => 'Kirim Tautan Atur Ulang Kata Sandi',
+    'forgot_password_message' => 'Lupa kata sandi Anda? Tidak masalah. Beritahu kami alamat email Anda dan kami akan mengirimkan tautan pengaturan ulang kata sandi yang memungkinkan Anda memilih yang baru.',
+    'secure_area_message' => 'Ini adalah area aplikasi yang aman. Harap konfirmasi kata sandi Anda sebelum melanjutkan.',
+    'your_name' => 'Nama Anda',
+    'shelter_name' => 'Nama Shelter',
+    'address' => 'Alamat',
+    'phone_number' => 'Nomor Telepon',
+    'shelter_contact_email' => 'Email Kontak Shelter',
+    'description_optional' => 'Deskripsi (Opsional)',
+    'website_optional' => 'Situs Web (Opsional)',
 
     // Registration
     'register_as_adopter' => 'Daftar sebagai Adopter',

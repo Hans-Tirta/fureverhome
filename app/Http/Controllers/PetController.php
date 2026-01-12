@@ -94,7 +94,7 @@ class PetController extends Controller
     {
         $this->authorize('create', Pet::class);
 
-        $categories = Category::all(); // All categories including subcategories for detailed selection
+        $categories = Category::forPets()->get(); // Filter only pet categories
         return view('pets.create', compact('categories'));
     }
 
@@ -177,7 +177,7 @@ class PetController extends Controller
     {
         $this->authorize('update', $pet);
 
-        $categories = Category::all();
+        $categories = Category::forPets()->get(); // Filter only pet categories
         return view('pets.edit', compact('pet', 'categories'));
     }
 

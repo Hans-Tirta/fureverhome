@@ -2,14 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ArticleRequest;
 use App\Models\Article;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class ArticleController extends Controller
 {
+    use AuthorizesRequests;
+
     /**
      * Display a listing of published articles.
      */
@@ -30,7 +35,7 @@ class ArticleController extends Controller
     {
         // Load relationships
         $article->load(['author', 'category']);
-        
+
         // Increment views counter
         $article->increment('views');
 
@@ -42,31 +47,20 @@ class ArticleController extends Controller
      */
     public function create()
     {
-        if (!auth()->user()->isAdmin()) {
-            abort(403, 'Only administrators can create articles.');
-        }
+        $this->authorize('create', Article::class);
 
-        $categories = Category::whereNotNull('parent_id')
-            ->whereIn('name', ['Dogs', 'Cats', 'Other animal', 'General'])
-            ->get();
+        // Fetch article-specific categories
+        $categories = Category::forArticles()->get();
         return view('articles.create', compact('categories'));
     }
 
     /**
      * Store a newly created article in storage.
      */
-    public function store(Request $request)
+    public function store(ArticleRequest $request)
     {
-        if (!auth()->user()->isAdmin()) {
-            abort(403, 'Only administrators can create articles.');
-        }
-
-        $validated = $request->validate([
-            'title' => 'required|string|max:255',
-            'category_id' => 'nullable|exists:categories,id',
-            'content' => 'required|string',
-            'featured_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-        ]);
+        // Validation handled by ArticleRequest
+        $validated = $request->validated();
 
         // Handle image upload
         if ($request->hasFile('featured_image')) {
@@ -74,7 +68,7 @@ class ArticleController extends Controller
         }
 
         // Set author
-        $validated['author_id'] = auth()->id();
+        $validated['author_id'] = Auth::id();
 
         Article::create($validated);
 
@@ -86,31 +80,20 @@ class ArticleController extends Controller
      */
     public function edit(Article $article)
     {
-        if (!auth()->user()->isAdmin()) {
-            abort(403, 'Only administrators can edit articles.');
-        }
+        $this->authorize('update', $article);
 
-        $categories = Category::whereNotNull('parent_id')
-            ->whereIn('name', ['Dogs', 'Cats', 'Other animal', 'General'])
-            ->get();
+        // Fetch article-specific categories
+        $categories = Category::forArticles()->get();
         return view('articles.edit', compact('article', 'categories'));
     }
 
     /**
      * Update the specified article in storage.
      */
-    public function update(Request $request, Article $article)
+    public function update(ArticleRequest $request, Article $article)
     {
-        if (!auth()->user()->isAdmin()) {
-            abort(403, 'Only administrators can update articles.');
-        }
-
-        $validated = $request->validate([
-            'title' => 'required|string|max:255',
-            'category_id' => 'nullable|exists:categories,id',
-            'content' => 'required|string',
-            'featured_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-        ]);
+        // Validation handled by ArticleRequest
+        $validated = $request->validated();
 
         // Handle image upload
         if ($request->hasFile('featured_image')) {
@@ -119,6 +102,9 @@ class ArticleController extends Controller
                 Storage::disk('public')->delete($article->featured_image);
             }
             $validated['featured_image'] = $request->file('featured_image')->store('articles', 'public');
+        } else {
+            // Keep existing image properly if no new image uploaded
+            unset($validated['featured_image']);
         }
 
         $article->update($validated);
@@ -131,9 +117,7 @@ class ArticleController extends Controller
      */
     public function destroy(Article $article)
     {
-        if (!auth()->user()->isAdmin()) {
-            abort(403, 'Only administrators can delete articles.');
-        }
+        $this->authorize('delete', $article);
 
         // Delete image if exists
         if ($article->featured_image) {
@@ -150,9 +134,7 @@ class ArticleController extends Controller
      */
     public function manage()
     {
-        if (!auth()->user()->isAdmin()) {
-            abort(403, 'Only administrators can manage articles.');
-        }
+        $this->authorize('manage', Article::class);
 
         $articles = Article::with(['author', 'category'])
             ->latest()

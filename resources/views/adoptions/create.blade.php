@@ -30,10 +30,14 @@
                     <div class="flex-1">
                         <h2 class="text-xl font-bold text-text-primary mb-2">{{ $pet->name }}</h2>
                         <div class="grid grid-cols-2 gap-x-4 gap-y-1 text-sm text-text-secondary">
-                            <p><span class="font-semibold">{{ __('messages.category') }}:</span> {{ $pet->category->name }}</p>
-                            <p><span class="font-semibold">{{ __('pets.show.age') }}:</span> {{ $pet->formatted_age }}</p>
-                            <p><span class="font-semibold">{{ __('pets.show.size') }}:</span> {{ ucfirst($pet->size) }}</p>
-                            <p><span class="font-semibold">{{ __('messages.shelter') }}:</span> {{ $pet->shelter->name }}</p>
+                            <p><span class="font-semibold">{{ __('messages.category') }}:</span>
+                                {{ $pet->category->name }}</p>
+                            <p><span class="font-semibold">{{ __('pets.show.age') }}:</span> {{ $pet->formatted_age }}
+                            </p>
+                            <p><span class="font-semibold">{{ __('pets.show.size') }}:</span>
+                                {{ ucfirst($pet->size) }}</p>
+                            <p><span class="font-semibold">{{ __('messages.shelter') }}:</span>
+                                {{ $pet->shelter->name }}</p>
                         </div>
                     </div>
                 </div>
@@ -48,10 +52,13 @@
                     <div class="p-6 space-y-6">
                         <!-- Contact Information -->
                         <div>
-                            <h2 class="text-lg font-semibold text-text-primary mb-4">{{ __('adoptions.create.form.contact_info') }}</h2>
+                            <h2 class="text-lg font-semibold text-text-primary mb-4">
+                                {{ __('adoptions.create.form.contact_info') }}</h2>
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 <div>
-                                    <label class="block text-sm font-medium text-text-secondary">{{ __('adoptions.create.form.phone') }} *</label>
+                                    <label
+                                        class="block text-sm font-medium text-text-secondary">{{ __('adoptions.create.form.phone') }}
+                                        *</label>
                                     <input type="text" name="phone" value="{{ old('phone') }}"
                                         class="mt-1 w-full rounded-md border border-background-secondary"
                                         placeholder="+62 812-3456-7890" required>
@@ -68,9 +75,11 @@
                                 </div>
                             </div>
                             <div class="mt-4">
-                                <label class="block text-sm font-medium text-text-secondary">{{ __('adoptions.create.form.address') }} *</label>
+                                <label
+                                    class="block text-sm font-medium text-text-secondary">{{ __('adoptions.create.form.address') }}
+                                    *</label>
                                 <textarea name="address" rows="2" class="mt-1 w-full rounded-md border border-background-secondary"
-                                    placeholder="Street, City, Province, Postal Code" required>{{ old('address') }}</textarea>
+                                    placeholder="{{ __('adoptions.create.form.address_placeholder') }}" required>{{ old('address') }}</textarea>
                                 @error('address')
                                     <p class="text-accent-red text-sm mt-1">{{ $message }}</p>
                                 @enderror
@@ -79,10 +88,14 @@
 
                         <!-- Why Adopt This Pet -->
                         <div>
-                            <h2 class="text-lg font-semibold text-text-primary mb-4">{{ __('adoptions.create.form.about') }}</h2>
+                            <h2 class="text-lg font-semibold text-text-primary mb-4">
+                                {{ __('adoptions.create.form.about') }}</h2>
                             <div>
-                                <label class="block text-sm font-medium text-text-secondary">{{ __('adoptions.create.form.about') }} {{ $pet->name }}? *</label>
-                                <p class="text-xs text-text-muted mb-2">{{ __('adoptions.create.form.reason_hint') }}</p>
+                                <label
+                                    class="block text-sm font-medium text-text-secondary">{{ __('adoptions.create.form.about') }}
+                                    {{ $pet->name }}? *</label>
+                                <p class="text-xs text-text-muted mb-2">{{ __('adoptions.create.form.reason_hint') }}
+                                </p>
                                 <textarea name="reason" rows="5" class="mt-1 w-full rounded-md border border-background-secondary"
                                     placeholder="{{ __('adoptions.create.form.reason_placeholder') }}" required>{{ old('reason') }}</textarea>
                                 @error('reason')
@@ -93,7 +106,9 @@
 
                         <!-- Pet Experience -->
                         <div>
-                                <label class="block text-sm font-medium text-text-secondary">{{ __('adoptions.show.pet_experience') }} *</label>
+                            <label
+                                class="block text-sm font-medium text-text-secondary">{{ __('adoptions.show.pet_experience') }}
+                                *</label>
                             <textarea name="experience" rows="3" class="mt-1 w-full rounded-md border border-background-secondary"
                                 placeholder="{{ __('adoptions.create.form.experience_placeholder') }}" required>{{ old('experience') }}</textarea>
                             @error('experience')
@@ -103,17 +118,21 @@
 
                         <!-- Living Situation -->
                         <div>
-                            <h2 class="text-lg font-semibold text-text-primary mb-4">{{ __('adoptions.create.form.living_situation') }}</h2>
+                            <h2 class="text-lg font-semibold text-text-primary mb-4">
+                                {{ __('adoptions.create.form.living_situation') }}</h2>
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 <div>
-                                    <label class="block text-sm font-medium text-text-secondary">{{ __('adoptions.create.form.housing_type') }} *</label>
+                                    <label
+                                        class="block text-sm font-medium text-text-secondary">{{ __('adoptions.create.form.housing_type') }}
+                                        *</label>
                                     <select name="housing_type"
                                         class="mt-1 w-full rounded-md border border-background-secondary" required>
                                         <option value="">{{ __('messages.select') }}</option>
                                         <option value="house" {{ old('housing_type') === 'house' ? 'selected' : '' }}>
                                             {{ __('adoptions.create.form.housing_options.house') }}</option>
                                         <option value="apartment"
-                                            {{ old('housing_type') === 'apartment' ? 'selected' : '' }}>{{ __('adoptions.create.form.housing_options.apartment') }}
+                                            {{ old('housing_type') === 'apartment' ? 'selected' : '' }}>
+                                            {{ __('adoptions.create.form.housing_options.apartment') }}
                                         </option>
                                         <option value="farm" {{ old('housing_type') === 'farm' ? 'selected' : '' }}>
                                             {{ __('adoptions.create.form.housing_options.farm') }}</option>
@@ -129,7 +148,8 @@
 
                         <!-- Other Pets -->
                         <div>
-                            <label class="block text-sm font-medium text-text-secondary mb-2">{{ __('adoptions.create.form.other_pets') }}
+                            <label
+                                class="block text-sm font-medium text-text-secondary mb-2">{{ __('adoptions.create.form.other_pets') }}
                                 *</label>
                             <div class="space-y-2">
                                 <label class="inline-flex items-center gap-2">
@@ -151,7 +171,8 @@
 
                             <div id="other_pets_details"
                                 class="mt-3 {{ old('has_other_pets') == '1' ? '' : 'hidden' }}">
-                                <label class="block text-sm font-medium text-text-secondary">{{ __('adoptions.create.form.other_pets_details_label') }}</label>
+                                <label
+                                    class="block text-sm font-medium text-text-secondary">{{ __('adoptions.create.form.other_pets_details_label') }}</label>
                                 <textarea name="other_pets_details" rows="2" class="mt-1 w-full rounded-md border border-background-secondary"
                                     placeholder="{{ __('adoptions.create.form.other_pets_placeholder') }}">{{ old('other_pets_details') }}</textarea>
                                 @error('other_pets_details')
@@ -162,7 +183,8 @@
 
                         <!-- Children -->
                         <div>
-                            <label class="block text-sm font-medium text-text-secondary mb-2">{{ __('adoptions.create.form.children') }}
+                            <label
+                                class="block text-sm font-medium text-text-secondary mb-2">{{ __('adoptions.create.form.children') }}
                                 *</label>
                             <div class="space-y-2">
                                 <label class="inline-flex items-center gap-2">
@@ -184,7 +206,8 @@
 
                             <div id="children_ages_field"
                                 class="mt-3 {{ old('has_children') == '1' ? '' : 'hidden' }}">
-                                <label class="block text-sm font-medium text-text-secondary">{{ __('adoptions.create.form.children_ages') }}</label>
+                                <label
+                                    class="block text-sm font-medium text-text-secondary">{{ __('adoptions.create.form.children_ages') }}</label>
                                 <input type="text" name="children_ages" value="{{ old('children_ages') }}"
                                     class="mt-1 w-full rounded-md border border-background-secondary"
                                     placeholder="e.g., 5, 8, 12 years old">
@@ -196,7 +219,8 @@
 
                         <!-- References -->
                         <div>
-                            <label class="block text-sm font-medium text-text-secondary">{{ __('adoptions.create.form.references') }}</label>
+                            <label
+                                class="block text-sm font-medium text-text-secondary">{{ __('adoptions.create.form.references') }}</label>
                             <p class="text-xs text-text-muted mb-2">{{ __('adoptions.show.references') }}</p>
                             <textarea name="references" rows="2" class="mt-1 w-full rounded-md border border-background-secondary"
                                 placeholder="{{ __('adoptions.create.form.references_placeholder') }}">{{ old('references') }}</textarea>

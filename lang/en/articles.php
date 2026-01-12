@@ -8,7 +8,6 @@ return [
         'empty_title' => 'Articles Coming Soon',
         'empty_description' => "We're working on creating helpful content about pet care and adoption. Check back soon!",
         'empty_cta' => 'Browse Available Pets',
-        'subtitle' => 'Create and manage your articles',
         'manage_page' => [
             'title' => 'Manage Articles',
             'subtitle' => 'Create and manage your articles',
@@ -26,9 +25,9 @@ return [
             'empty_cta' => 'Create Your First Article',
             'uncategorized' => 'Uncategorized',
         ],
-    'show' => [
-        'views_label' => ':count views',
-    ],
+        'show' => [
+            'views_label' => ':count views',
+        ],
     ],
     'show' => [
         'back' => 'Back to Articles',
@@ -50,6 +49,7 @@ return [
             'featured_image' => 'Featured Image',
             'current_featured_image_alt' => 'Current featured image',
             'featured_help' => 'Maximum file size: 2MB. Supported formats: JPEG, PNG, JPG, GIF',
+            'featured_leave_empty' => 'Leave empty to keep current image.',
             'content' => 'Content',
         ],
     ],

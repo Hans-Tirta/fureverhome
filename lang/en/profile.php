@@ -20,4 +20,10 @@ return [
     'update' => [
         'description' => "Update your account's profile information and email address.",
     ],
+    'password' => [
+        'title' => 'Update Password',
+        'description' => 'Ensure your account is using a long, random password to stay secure.',
+        'current' => 'Current Password',
+        'new' => 'New Password',
+    ],
 ];

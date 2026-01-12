@@ -30,6 +30,7 @@ return [
             'contact' => 'Contact',
             'website' => 'Website',
         ],
+        'sponsor' => 'Sponsor This Shelter',
     ],
     'status' => [
         'verified' => 'Verified',

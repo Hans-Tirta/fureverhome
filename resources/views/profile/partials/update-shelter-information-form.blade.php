@@ -11,12 +11,13 @@
         @if (!auth()->user()->shelter->is_verified)
             <div class="mt-3 p-3 bg-yellow-50 border border-yellow-200 rounded-md">
                 <p class="text-sm text-yellow-800">
-                    <strong>{{ __('profile.shelter.verification_pending_title') }}</strong> {{ __('profile.shelter.verification_pending_message') }}
+                    <strong>{{ __('profile.shelter.verification_pending_title') }}</strong>
+                    {{ __('profile.shelter.verification_pending_message') }}
                 </p>
             </div>
         @else
             <div class="mt-3 p-3 bg-green-50 border border-green-200 rounded-md">
-                                <p class="text-sm text-green-800 flex items-center">
+                <p class="text-sm text-green-800 flex items-center">
                     <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
                         <path fill-rule="evenodd"
                             d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
@@ -78,11 +79,11 @@
         </div>
 
         <div class="flex items-center gap-4">
-            <x-primary-button>{{ __('Save') }}</x-primary-button>
+            <x-primary-button>{{ __('messages.save') }}</x-primary-button>
 
             @if (session('status') === 'shelter-updated')
                 <p x-data="{ show: true }" x-show="show" x-transition x-init="setTimeout(() => show = false, 2000)"
-                    class="text-sm text-gray-600">{{ __('Saved.') }}</p>
+                    class="text-sm text-gray-600">{{ __('messages.saved') }}</p>
             @endif
         </div>
     </form>

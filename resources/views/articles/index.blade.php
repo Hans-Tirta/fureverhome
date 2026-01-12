@@ -3,7 +3,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
             <!-- Header -->
-                <div class="mb-8 flex items-center justify-between">
+            <div class="mb-8 flex items-center justify-between">
                 <div>
                     <h1 class="text-3xl font-bold text-text-primary mb-2">{{ __('articles.index.title') }}</h1>
                     <p class="text-text-secondary">{{ __('articles.index.subtitle') }}</p>
@@ -44,8 +44,9 @@
                 <!-- Articles Grid -->
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     @foreach ($articles as $article)
-                        <article class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition">
-                            <a href="{{ route('articles.show', $article) }}" class="block">
+                        <article
+                            class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition h-full flex flex-col">
+                            <a href="{{ route('articles.show', $article) }}" class="block h-full flex flex-col">
                                 @if ($article->featured_image)
                                     <div class="aspect-video overflow-hidden">
                                         <img src="{{ asset('storage/' . $article->featured_image) }}"
@@ -53,7 +54,7 @@
                                             class="w-full h-full object-cover hover:scale-105 transition-transform duration-300">
                                     </div>
                                 @else
-                                    <div class="w-full h-48 bg-accent-red flex items-center justify-center">
+                                    <div class="aspect-video w-full bg-accent-red flex items-center justify-center">
                                         <svg class="w-20 h-20 text-white opacity-70" fill="none"
                                             stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"

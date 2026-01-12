@@ -30,33 +30,34 @@ return [
             'contact' => 'Kontak',
             'website' => 'Situs Web',
         ],
+        'sponsor' => 'Sponsori Shelter Ini',
     ],
-        'status' => [
-            'verified' => 'Terverifikasi',
+    'status' => [
+        'verified' => 'Terverifikasi',
+        'pending' => 'Menunggu',
+    ],
+    'admin' => [
+        'title' => 'Verifikasi Shelter',
+        'subtitle' => 'Tinjau dan setujui pendaftaran shelter',
+        'tabs' => [
+            'all' => 'Semua Shelter',
             'pending' => 'Menunggu',
+            'verified' => 'Terverifikasi',
         ],
-        'admin' => [
-            'title' => 'Verifikasi Shelter',
-            'subtitle' => 'Tinjau dan setujui pendaftaran shelter',
-            'tabs' => [
-                'all' => 'Semua Shelter',
-                'pending' => 'Menunggu',
-                'verified' => 'Terverifikasi',
-            ],
-            'table' => [
-                'shelter' => 'Shelter',
-                'contact' => 'Kontak',
-                'registered' => 'Terdaftar',
-                'status' => 'Status',
-                'actions' => 'Aksi',
-            ],
-            'empty' => [
-                'pending' => 'Tidak Ada Shelter Menunggu',
-                'verified' => 'Tidak Ada Shelter Terverifikasi',
-                'none' => 'Tidak Ada Shelter Ditemukan',
-                'pending_desc' => 'Semua pendaftaran shelter telah diproses.',
-                'default_desc' => 'Menunggu pendaftaran shelter baru.',
-            ],
-            'approve' => 'Setujui',
+        'table' => [
+            'shelter' => 'Shelter',
+            'contact' => 'Kontak',
+            'registered' => 'Terdaftar',
+            'status' => 'Status',
+            'actions' => 'Aksi',
         ],
+        'empty' => [
+            'pending' => 'Tidak Ada Shelter Menunggu',
+            'verified' => 'Tidak Ada Shelter Terverifikasi',
+            'none' => 'Tidak Ada Shelter Ditemukan',
+            'pending_desc' => 'Semua pendaftaran shelter telah diproses.',
+            'default_desc' => 'Menunggu pendaftaran shelter baru.',
+        ],
+        'approve' => 'Setujui',
+    ],
 ];
