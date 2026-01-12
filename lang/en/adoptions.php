@@ -56,6 +56,7 @@ return [
         'cancel' => 'Cancel',
         'rejection_reason' => 'Rejection Reason',
         'reviewed_on' => 'Reviewed on',
+        'rejection_reason_placeholder' => 'Please provide a reason for rejecting this adoption request...',
     ],
     'create' => [
         'title' => 'Adoption Request',

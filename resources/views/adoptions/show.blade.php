@@ -308,24 +308,27 @@
                 @method('PATCH')
                 <input type="hidden" name="status" value="rejected">
 
-                <div class="pt-2">
-                    <a href="{{ route('pets.show', $adoption->pet) }}"
-                        class="inline-flex items-center text-accent-red text-sm font-semibold hover:underline">
-                        {{ __('adoptions.show.view_full_pet') }}
-                        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7">
-                            </path>
-                        </svg>
-                    </a>
+                <div class="mb-4">
+                    <label for="rejection_reason" class="block text-sm font-semibold text-text-secondary mb-2">
+                        {{ __('adoptions.show.rejection_reason') }} <span class="text-accent-red">*</span>
+                    </label>
+                    <textarea name="rejection_reason" id="rejection_reason" rows="4" required
+                        class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-accent-red focus:border-transparent"
+                        placeholder="{{ __('adoptions.show.rejection_reason_placeholder') ?? 'Please provide a reason for rejecting this adoption request...' }}"></textarea>
                 </div>
-                </button>
-                <button type="submit"
-                    class="flex-1 px-4 py-2 rounded-md bg-accent-red text-white font-semibold hover:bg-opacity-90">
-                    {{ __('adoptions.show.reject') }}
-                </button>
+
+                <div class="flex gap-3">
+                    <button type="button" onclick="closeRejectModal()"
+                        class="flex-1 px-4 py-2 rounded-md bg-white border-2 border-text-secondary text-text-secondary font-semibold hover:bg-background-primary">
+                        {{ __('messages.cancel') ?? 'Cancel' }}
+                    </button>
+                    <button type="submit"
+                        class="flex-1 px-4 py-2 rounded-md bg-accent-red text-white font-semibold hover:bg-opacity-90">
+                        {{ __('adoptions.show.reject') }}
+                    </button>
+                </div>
+            </form>
         </div>
-        </form>
-    </div>
     </div>
 
     <script>

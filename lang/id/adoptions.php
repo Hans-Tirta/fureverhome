@@ -56,6 +56,7 @@ return [
         'cancel' => 'Batal',
         'rejection_reason' => 'Alasan Penolakan',
         'reviewed_on' => 'Ditinjau pada',
+        'rejection_reason_placeholder' => 'Harap berikan alasan penolakan permintaan adopsi ini...',
     ],
     'create' => [
         'title' => 'Permintaan Adopsi',
