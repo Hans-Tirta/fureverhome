@@ -32,14 +32,16 @@
                             <span class="font-semibold text-text-primary">{{ $sponsorship->shelter->name }}</span>
                         </div>
                         <div class="flex justify-between py-2 border-b border-background-secondary">
-                            <span class="text-text-secondary">{{ __('messages.status') ?? 'Status' }}</span>
-                            <span class="font-semibold text-accent-red">{{ __('sponsorships.failed.status_failed') }}</span>
+                            <span class="text-text-secondary">{{ __('messages.status') }}</span>
+                            <span
+                                class="font-semibold text-accent-red">{{ __('sponsorships.failed.status_failed') }}</span>
                         </div>
                     </div>
 
                     <!-- Error Info -->
                     <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4 mb-6">
-                        <p class="text-sm text-text-primary mb-2">{{ __('sponsorships.failed.common_reasons.title') }}</p>
+                        <p class="text-sm text-text-primary mb-2">{{ __('sponsorships.failed.common_reasons.title') }}
+                        </p>
                         <ul class="text-sm text-text-secondary space-y-1 list-disc list-inside">
                             <li>{{ __('sponsorships.failed.common_reasons.insufficient') }}</li>
                             <li>{{ __('sponsorships.failed.common_reasons.cancelled') }}</li>

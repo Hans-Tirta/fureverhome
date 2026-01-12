@@ -4,7 +4,7 @@
 
             <!-- Back Button -->
             <div class="mb-6">
-                    <a href="{{ route('shelters.show', $shelter) }}"
+                <a href="{{ route('shelters.show', $shelter) }}"
                     class="inline-flex items-center text-text-secondary hover:text-text-primary">
                     <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -15,8 +15,9 @@
             </div>
 
             <!-- Header -->
-                <div class="mb-8">
-                <h1 class="text-3xl font-bold text-text-primary mb-2">{{ __('sponsorships.create.title') }} {{ $shelter->name }}</h1>
+            <div class="mb-8">
+                <h1 class="text-3xl font-bold text-text-primary mb-2">{{ __('sponsorships.create.title') }}
+                    {{ $shelter->name }}</h1>
                 <p class="text-text-secondary">{{ __('sponsorships.create.subtitle') }}</p>
             </div>
 
@@ -54,7 +55,7 @@
                         <div class="flex flex-wrap gap-4 text-sm text-text-secondary">
                             @if ($shelter->address)
                                 <div class="flex items-center gap-1">
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                             d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -69,7 +70,7 @@
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4" />
                                 </svg>
-                                <span>{{ $shelter->pets->count() }} {{ __('messages.pets') ?? 'animals' }}</span>
+                                <span>{{ $shelter->pets->count() }} {{ __('messages.pets') }}</span>
                             </div>
                         </div>
                     </div>
@@ -86,7 +87,8 @@
 
                         <!-- Donation Amount -->
                         <div>
-                            <h2 class="text-lg font-semibold text-text-primary mb-4">{{ __('sponsorships.create.donation_amount') }}</h2>
+                            <h2 class="text-lg font-semibold text-text-primary mb-4">
+                                {{ __('sponsorships.create.donation_amount') }}</h2>
 
                             <!-- Preset Amounts -->
                             <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
@@ -103,20 +105,22 @@
                                 <label class="block text-sm font-medium text-text-secondary mb-2">
                                     {{ __('sponsorships.create.or_enter_custom', ['min' => '1.000']) }}
                                 </label>
-                                    <input type="number" id="amountInput" name="amount" value="{{ old('amount') }}"
+                                <input type="number" id="amountInput" name="amount" value="{{ old('amount') }}"
                                     min="1000" step="1000"
                                     class="w-full rounded-md border-background-secondary focus:border-accent-red focus:ring focus:ring-accent-red focus:ring-opacity-50"
                                     placeholder="{{ __('sponsorships.create.enter_amount_placeholder') }}" required>
                                 @error('amount')
                                     <p class="text-accent-red text-sm mt-1">{{ $message }}</p>
                                 @enderror
-                                <p class="text-xs text-text-muted mt-1">{{ __('sponsorships.create.minimum_donation', ['min' => '1.000']) }}</p>
+                                <p class="text-xs text-text-muted mt-1">
+                                    {{ __('sponsorships.create.minimum_donation', ['min' => '1.000']) }}</p>
                             </div>
                         </div>
 
                         <!-- Message (Optional) -->
                         <div>
-                            <h2 class="text-lg font-semibold text-text-primary mb-4">{{ __('sponsorships.create.message_optional') }}</h2>
+                            <h2 class="text-lg font-semibold text-text-primary mb-4">
+                                {{ __('sponsorships.create.message_optional') }}</h2>
                             <div>
                                 <label class="block text-sm font-medium text-text-secondary mb-2">
                                     {{ __('sponsorships.create.leave_message') }}
@@ -127,13 +131,15 @@
                                 @error('message')
                                     <p class="text-accent-red text-sm mt-1">{{ $message }}</p>
                                 @enderror
-                                <p class="text-xs text-text-muted mt-1">{{ __('sponsorships.create.message_visible_note') }}</p>
+                                <p class="text-xs text-text-muted mt-1">
+                                    {{ __('sponsorships.create.message_visible_note') }}</p>
                             </div>
                         </div>
 
                         <!-- Anonymous Option -->
                         <div>
-                            <h2 class="text-lg font-semibold text-text-primary mb-4">{{ __('sponsorships.create.privacy') }}</h2>
+                            <h2 class="text-lg font-semibold text-text-primary mb-4">
+                                {{ __('sponsorships.create.privacy') }}</h2>
                             <label class="flex items-start gap-3 cursor-pointer group">
                                 <input type="checkbox" name="is_anonymous" value="1"
                                     {{ old('is_anonymous') ? 'checked' : '' }}

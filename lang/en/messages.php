@@ -50,6 +50,8 @@ return [
     'view' => 'View',
     'back' => 'Back',
     'submit' => 'Submit',
+    'status' => 'Status',
+    'message' => 'Message',
     'close' => 'Close',
 
     // Status
@@ -72,7 +74,7 @@ return [
     'date' => 'Date',
     'pets' => 'pets',
     'views' => 'views',
-        'by' => 'By',
+    'by' => 'By',
     'name' => 'Name',
     'email' => 'Email',
     'phone' => 'Phone',
@@ -82,4 +84,5 @@ return [
     'category' => 'Category',
     'yes' => 'Yes',
     'no' => 'No',
+    'current_image' => 'Current image',
 ];
