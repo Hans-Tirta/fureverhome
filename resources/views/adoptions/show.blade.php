@@ -19,7 +19,9 @@
                 <div class="flex items-start justify-between">
                     <div>
                         <h1 class="text-3xl font-bold text-text-primary mb-2">{{ __('adoptions.show.title') }}</h1>
-                        <p class="text-text-secondary">{{ __('adoptions.show.submitted', ['date' => $adoption->created_at->format('F d, Y')]) }}</p>
+                        <p class="text-text-secondary">
+                            {{ __('adoptions.show.submitted', ['date' => $adoption->created_at->format('F d, Y')]) }}
+                        </p>
                     </div>
                     <div>
                         @if ($adoption->status === 'pending')
@@ -69,46 +71,58 @@
 
                     <!-- Request Details -->
                     <div class="bg-white rounded-lg shadow-md p-6">
-                        <h2 class="text-xl font-bold text-text-primary mb-4">{{ __('adoptions.show.request_details') }}</h2>
+                        <h2 class="text-xl font-bold text-text-primary mb-4">{{ __('adoptions.show.request_details') }}
+                        </h2>
 
                         <div class="space-y-4">
                             <div>
-                                <h3 class="text-sm font-semibold text-text-secondary mb-1">{{ __('adoptions.show.why_adopt') }}</h3>
+                                <h3 class="text-sm font-semibold text-text-secondary mb-1">
+                                    {{ __('adoptions.show.why_adopt') }}</h3>
                                 <p class="text-text-primary">{{ $adoption->reason }}</p>
                             </div>
 
                             <div>
-                                <h3 class="text-sm font-semibold text-text-secondary mb-1">{{ __('adoptions.show.pet_experience') }}</h3>
+                                <h3 class="text-sm font-semibold text-text-secondary mb-1">
+                                    {{ __('adoptions.show.pet_experience') }}</h3>
                                 <p class="text-text-primary">{{ $adoption->experience }}</p>
                             </div>
 
                             <div class="grid grid-cols-2 gap-4">
                                 <div>
-                                    <h3 class="text-sm font-semibold text-text-secondary mb-1">{{ __('adoptions.show.housing_type') }}</h3>
+                                    <h3 class="text-sm font-semibold text-text-secondary mb-1">
+                                        {{ __('adoptions.show.housing_type') }}</h3>
                                     <p class="text-text-primary">{{ ucfirst($adoption->housing_type) }}</p>
                                 </div>
                                 <div>
-                                    <h3 class="text-sm font-semibold text-text-secondary mb-1">{{ __('adoptions.show.other_pets') }}</h3>
-                                    <p class="text-text-primary">{{ $adoption->has_other_pets ? __('messages.yes') ?? 'Yes' : __('messages.no') ?? 'No' }}</p>
+                                    <h3 class="text-sm font-semibold text-text-secondary mb-1">
+                                        {{ __('adoptions.show.other_pets') }}</h3>
+                                    <p class="text-text-primary">
+                                        {{ $adoption->has_other_pets ? __('messages.yes') ?? 'Yes' : __('messages.no') ?? 'No' }}
+                                    </p>
                                 </div>
                             </div>
 
                             @if ($adoption->has_other_pets && $adoption->other_pets_details)
                                 <div>
-                                    <h3 class="text-sm font-semibold text-text-secondary mb-1">{{ __('adoptions.show.other_pets_details') }}</h3>
+                                    <h3 class="text-sm font-semibold text-text-secondary mb-1">
+                                        {{ __('adoptions.show.other_pets_details') }}</h3>
                                     <p class="text-text-primary">{{ $adoption->other_pets_details }}</p>
                                 </div>
                             @endif
 
                             <div class="grid grid-cols-2 gap-4">
                                 <div>
-                                    <h3 class="text-sm font-semibold text-text-secondary mb-1">{{ __('adoptions.show.children_in_household') }}
+                                    <h3 class="text-sm font-semibold text-text-secondary mb-1">
+                                        {{ __('adoptions.show.children_in_household') }}
                                     </h3>
-                                    <p class="text-text-primary">{{ $adoption->has_children ? __('messages.yes') ?? 'Yes' : __('messages.no') ?? 'No' }}</p>
+                                    <p class="text-text-primary">
+                                        {{ $adoption->has_children ? __('messages.yes') ?? 'Yes' : __('messages.no') ?? 'No' }}
+                                    </p>
                                 </div>
                                 @if ($adoption->has_children && $adoption->children_ages)
                                     <div>
-                                        <h3 class="text-sm font-semibold text-text-secondary mb-1">{{ __('adoptions.show.children_ages') }}</h3>
+                                        <h3 class="text-sm font-semibold text-text-secondary mb-1">
+                                            {{ __('adoptions.show.children_ages') }}</h3>
                                         <p class="text-text-primary">{{ $adoption->children_ages }}</p>
                                     </div>
                                 @endif
@@ -116,7 +130,8 @@
 
                             @if ($adoption->references)
                                 <div>
-                                    <h3 class="text-sm font-semibold text-text-secondary mb-1">{{ __('adoptions.show.references') }}</h3>
+                                    <h3 class="text-sm font-semibold text-text-secondary mb-1">
+                                        {{ __('adoptions.show.references') }}</h3>
                                     <p class="text-text-primary">{{ $adoption->references }}</p>
                                 </div>
                             @endif
@@ -129,34 +144,41 @@
                 <div class="space-y-6">
                     <!-- Pet Information -->
                     <div class="bg-white rounded-lg shadow-md p-6">
-                        <h2 class="text-xl font-bold text-text-primary mb-4">{{ __('adoptions.show.pet_information') }}</h2>
+                        <h2 class="text-xl font-bold text-text-primary mb-4">{{ __('adoptions.show.pet_information') }}
+                        </h2>
                         <div class="space-y-3">
                             <div>
-                                <h3 class="text-xs font-semibold text-text-secondary mb-1">{{ __('messages.name') }}</h3>
+                                <h3 class="text-xs font-semibold text-text-secondary mb-1">{{ __('messages.name') }}
+                                </h3>
                                 <p class="text-lg font-bold text-text-primary">{{ $adoption->pet->name }}</p>
                             </div>
                             <div class="grid grid-cols-2 gap-4">
                                 <div>
-                                    <h3 class="text-xs font-semibold text-text-secondary mb-1">{{ __('messages.category') }}</h3>
+                                    <h3 class="text-xs font-semibold text-text-secondary mb-1">
+                                        {{ __('messages.category') }}</h3>
                                     <p class="text-text-primary">{{ $adoption->pet->category->name }}</p>
                                 </div>
                                 <div>
-                                    <h3 class="text-xs font-semibold text-text-secondary mb-1">{{ __('messages.size') }}</h3>
+                                    <h3 class="text-xs font-semibold text-text-secondary mb-1">
+                                        {{ __('messages.size') }}</h3>
                                     <p class="text-text-primary">{{ ucfirst($adoption->pet->size) }}</p>
                                 </div>
                             </div>
                             <div class="grid grid-cols-2 gap-4">
                                 <div>
-                                    <h3 class="text-xs font-semibold text-text-secondary mb-1">{{ __('pets.show.gender') }}</h3>
+                                    <h3 class="text-xs font-semibold text-text-secondary mb-1">
+                                        {{ __('pets.show.gender') }}</h3>
                                     <p class="text-text-primary">{{ ucfirst($adoption->pet->gender) }}</p>
                                 </div>
                                 <div>
-                                    <h3 class="text-xs font-semibold text-text-secondary mb-1">{{ __('messages.age') }}</h3>
+                                    <h3 class="text-xs font-semibold text-text-secondary mb-1">{{ __('messages.age') }}
+                                    </h3>
                                     <p class="text-text-primary">{{ $adoption->pet->formatted_age }}</p>
                                 </div>
                             </div>
                             <div>
-                                <h3 class="text-xs font-semibold text-text-secondary mb-1">{{ __('messages.shelter') }}</h3>
+                                <h3 class="text-xs font-semibold text-text-secondary mb-1">{{ __('messages.shelter') }}
+                                </h3>
                                 <p class="font-semibold text-text-primary">{{ $adoption->pet->shelter->name }}</p>
                             </div>
                             <div class="pt-2">
@@ -174,7 +196,8 @@
 
                     <!-- Adopter Information -->
                     <div class="bg-white rounded-lg shadow-md p-6">
-                            <h2 class="text-lg font-bold text-text-primary mb-4">{{ __('adoptions.show.adopter_information') }}</h2>
+                        <h2 class="text-lg font-bold text-text-primary mb-4">
+                            {{ __('adoptions.show.adopter_information') }}</h2>
                         <div class="space-y-3">
                             <div>
                                 <h3 class="text-xs font-semibold text-text-secondary">{{ __('messages.name') }}</h3>
@@ -200,7 +223,8 @@
                             (auth()->user()->role === 'shelter' && auth()->user()->shelter?->id === $adoption->pet->shelter_id))
                         @if ($adoption->status === 'pending')
                             <div class="bg-white rounded-lg shadow-md p-6">
-                                <h2 class="text-lg font-bold text-text-primary mb-4">{{ __('adoptions.show.review_request') }}</h2>
+                                <h2 class="text-lg font-bold text-text-primary mb-4">
+                                    {{ __('adoptions.show.review_request') }}</h2>
 
                                 <!-- Approve Form -->
                                 <form method="POST" action="{{ route('adoptions.update', $adoption) }}"
@@ -228,7 +252,8 @@
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                                 </svg>
-                                <h3 class="text-lg font-bold text-accent-green mb-1">{{ __('adoptions.show.request_approved') }}</h3>
+                                <h3 class="text-lg font-bold text-accent-green mb-1">
+                                    {{ __('adoptions.show.request_approved') }}</h3>
                                 @if ($adoption->reviewed_at)
                                     <p class="text-sm text-text-secondary">
                                         {{ $adoption->reviewed_at->format('F d, Y') }}</p>
@@ -240,7 +265,8 @@
                     <!-- Cancel Button for Adopter -->
                     @if (auth()->user()->id === $adoption->user_id && $adoption->status === 'pending')
                         <div class="bg-white rounded-lg shadow-md p-6">
-                            <h2 class="text-lg font-bold text-text-primary mb-4">{{ __('adoptions.show.cancel') }}</h2>
+                            <h2 class="text-lg font-bold text-text-primary mb-4">{{ __('adoptions.show.cancel') }}
+                            </h2>
                             <form method="POST" action="{{ route('adoptions.destroy', $adoption) }}">
                                 @csrf
                                 @method('DELETE')
@@ -256,10 +282,11 @@
                     <!-- Rejection Reason (if rejected) -->
                     @if ($adoption->status === 'rejected' && $adoption->rejection_reason)
                         <div class="bg-red-50 border-2 border-accent-red rounded-lg p-6">
-                            <h2 class="text-lg font-bold text-accent-red mb-2">{{ __('adoptions.show.rejection_reason') }}</h2>
+                            <h2 class="text-lg font-bold text-accent-red mb-2">
+                                {{ __('adoptions.show.rejection_reason') }}</h2>
                             <p class="text-text-primary">{{ $adoption->rejection_reason }}</p>
                             @if ($adoption->reviewed_at)
-                                <p class="text-sm text-text-secondary mt-2">Reviewed on
+                                <p class="text-sm text-text-secondary mt-2">{{ __('adoptions.show.reviewed_on') }}
                                     {{ $adoption->reviewed_at->format('F d, Y') }}</p>
                             @endif
                         </div>
@@ -281,24 +308,24 @@
                 @method('PATCH')
                 <input type="hidden" name="status" value="rejected">
 
-                            <div class="pt-2">
-                                <a href="{{ route('pets.show', $adoption->pet) }}"
-                                    class="inline-flex items-center text-accent-red text-sm font-semibold hover:underline">
-                                    {{ __('adoptions.show.view_full_pet') }}
-                                    <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M9 5l7 7-7 7"></path>
-                                    </svg>
-                                </a>
-                            </div>
-                    </button>
-                    <button type="submit"
-                        class="flex-1 px-4 py-2 rounded-md bg-accent-red text-white font-semibold hover:bg-opacity-90">
-                        {{ __('adoptions.show.reject') }}
-                    </button>
+                <div class="pt-2">
+                    <a href="{{ route('pets.show', $adoption->pet) }}"
+                        class="inline-flex items-center text-accent-red text-sm font-semibold hover:underline">
+                        {{ __('adoptions.show.view_full_pet') }}
+                        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7">
+                            </path>
+                        </svg>
+                    </a>
                 </div>
-            </form>
+                </button>
+                <button type="submit"
+                    class="flex-1 px-4 py-2 rounded-md bg-accent-red text-white font-semibold hover:bg-opacity-90">
+                    {{ __('adoptions.show.reject') }}
+                </button>
         </div>
+        </form>
+    </div>
     </div>
 
     <script>

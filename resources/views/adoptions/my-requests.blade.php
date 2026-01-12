@@ -73,16 +73,16 @@
                                         </span>
                                         @if ($adoption->status === 'pending')
                                             <span
-                                                class="px-2 py-1 bg-accent-blue text-white text-xs font-semibold rounded">Pending</span>
+                                                class="px-2 py-1 bg-accent-blue text-white text-xs font-semibold rounded">{{ __('adoptions.show.status.pending') }}</span>
                                         @elseif ($adoption->status === 'approved')
                                             <span
-                                                class="px-2 py-1 bg-accent-green text-white text-xs font-semibold rounded">Approved</span>
+                                                class="px-2 py-1 bg-accent-green text-white text-xs font-semibold rounded">{{ __('adoptions.show.status.approved') }}</span>
                                         @elseif ($adoption->status === 'rejected')
                                             <span
-                                                class="px-2 py-1 bg-accent-red text-white text-xs font-semibold rounded">Rejected</span>
+                                                class="px-2 py-1 bg-accent-red text-white text-xs font-semibold rounded">{{ __('adoptions.show.status.rejected') }}</span>
                                         @else
                                             <span
-                                                class="px-2 py-1 bg-text-secondary text-white text-xs font-semibold rounded">Cancelled</span>
+                                                class="px-2 py-1 bg-text-secondary text-white text-xs font-semibold rounded">{{ __('adoptions.show.status.cancelled') }}</span>
                                         @endif
                                     </div>
                                 </div>
@@ -97,7 +97,8 @@
                                         class="mt-2">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" onclick="return confirm('{{ __('adoptions.show.cancel_confirm') }}')"
+                                        <button type="submit"
+                                            onclick="return confirm('{{ __('adoptions.show.cancel_confirm') }}')"
                                             class="w-full text-center bg-white border border-background-secondary text-text-secondary hover:bg-background-primary font-medium py-2 rounded-md transition text-sm">
                                             {{ __('adoptions.show.cancel_request') }}
                                         </button>

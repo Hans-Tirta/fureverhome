@@ -55,6 +55,7 @@ return [
         'cancel_request' => 'Cancel My Request',
         'cancel' => 'Cancel',
         'rejection_reason' => 'Rejection Reason',
+        'reviewed_on' => 'Reviewed on',
     ],
     'create' => [
         'title' => 'Adoption Request',
